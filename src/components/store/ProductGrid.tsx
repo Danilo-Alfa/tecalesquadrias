@@ -1,9 +1,11 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { CalcularButton } from "@/components/store/CalculadoraSobMedida";
 import { Container } from "@/components/ui/Container";
 import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
-import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { PRODUCTS } from "@/content/products";
-import { productWhatsappUrl } from "@/lib/whatsapp";
+
+const formatMetros = (value: number): string =>
+  value.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
 
 export function ProductGrid() {
   return (
@@ -52,19 +54,12 @@ export function ProductGrid() {
                       Sob medida
                     </p>
                     <p className="mt-0.5 text-[0.6875rem] text-grafite-600/80">
-                      No tamanho exato do seu vão
+                      Medidas a partir de{" "}
+                      {formatMetros(product.medidas.larguraMin)} x{" "}
+                      {formatMetros(product.medidas.alturaMin)} m
                     </p>
                   </div>
-                  <a
-                    href={productWhatsappUrl(product.waLabel)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-wa={`produto-${product.id}`}
-                    className="mt-3 inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-navy-900 text-[0.8125rem] font-semibold text-white transition-all hover:bg-navy-800 active:scale-[0.98]"
-                  >
-                    <WhatsAppIcon className="size-4 text-verde-500" />
-                    Calcular sob medida
-                  </a>
+                  <CalcularButton product={product} />
                 </div>
               </article>
             </Reveal>

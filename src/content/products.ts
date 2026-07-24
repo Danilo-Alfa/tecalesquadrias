@@ -1,3 +1,11 @@
+export interface ProductMeasures {
+  /** Faixas em metros */
+  larguraMin: number;
+  larguraMax: number;
+  alturaMin: number;
+  alturaMax: number;
+}
+
 export interface Product {
   id: string;
   title: string;
@@ -13,9 +21,11 @@ export interface Product {
     | "vidro"
     | "projeto"
     | "grade";
+  medidas: ProductMeasures;
 }
 
-// TODO(cliente): substituir placeholders por fotos reais dos produtos
+// TODO(cliente): substituir placeholders por fotos reais e confirmar as
+// faixas de medidas (min/max) praticadas pela fabrica em cada produto
 export const PRODUCTS: readonly Product[] = [
   {
     id: "janela-de-correr",
@@ -23,6 +33,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "2, 3 ou 4 folhas, com vidro liso, fumê ou temperado.",
     waLabel: "janela de correr sob medida",
     placeholder: "janela",
+    medidas: { larguraMin: 0.8, larguraMax: 3, alturaMin: 0.8, alturaMax: 1.6 },
   },
   {
     id: "janela-maxim-ar",
@@ -30,6 +41,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Ventilação com segurança para banheiros e cozinhas.",
     waLabel: "janela maxim-ar sob medida",
     placeholder: "janela",
+    medidas: { larguraMin: 0.4, larguraMax: 1.5, alturaMin: 0.4, alturaMax: 1.2 },
   },
   {
     id: "porta-de-correr",
@@ -37,6 +49,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Integra ambientes com deslizamento suave e vedação.",
     waLabel: "porta de correr sob medida",
     placeholder: "porta",
+    medidas: { larguraMin: 1.5, larguraMax: 4, alturaMin: 2, alturaMax: 2.4 },
   },
   {
     id: "porta-pivotante",
@@ -44,6 +57,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Entrada social imponente, no tamanho do seu vão.",
     waLabel: "porta pivotante sob medida",
     placeholder: "porta",
+    medidas: { larguraMin: 0.8, larguraMax: 1.5, alturaMin: 2.1, alturaMax: 2.5 },
   },
   {
     id: "portao",
@@ -51,6 +65,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Social e garagem: leve, seguro e sem ferrugem.",
     waLabel: "portão de alumínio sob medida",
     placeholder: "portao",
+    medidas: { larguraMin: 2, larguraMax: 6, alturaMin: 1.5, alturaMax: 2.5 },
   },
   {
     id: "fachada",
@@ -58,6 +73,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Presença arquitetônica para comércios e edifícios.",
     waLabel: "fachada em pele de vidro",
     placeholder: "fachada",
+    medidas: { larguraMin: 2, larguraMax: 15, alturaMin: 2, alturaMax: 10 },
   },
   {
     id: "vidros",
@@ -65,6 +81,7 @@ export const PRODUCTS: readonly Product[] = [
     description: "Box, guarda-corpos, espelhos e fechamentos.",
     waLabel: "box e vidros temperados",
     placeholder: "vidro",
+    medidas: { larguraMin: 0.6, larguraMax: 3, alturaMin: 1.6, alturaMax: 2.2 },
   },
   {
     id: "grade",
@@ -72,5 +89,15 @@ export const PRODUCTS: readonly Product[] = [
     description: "Proteção com design — e zero manutenção.",
     waLabel: "grade de alumínio sob medida",
     placeholder: "grade",
+    medidas: { larguraMin: 0.4, larguraMax: 3, alturaMin: 0.4, alturaMax: 2.2 },
   },
+] as const;
+
+// TODO(cliente): confirmar cores de aluminio disponiveis
+export const ALUMINUM_COLORS = [
+  "Branco",
+  "Preto",
+  "Bronze",
+  "Alumínio natural",
+  "Outra cor / ainda não sei",
 ] as const;
