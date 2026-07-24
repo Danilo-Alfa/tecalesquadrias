@@ -1,43 +1,85 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { CalcularButton } from "@/components/store/CalculadoraSobMedida";
+import { BUSCA_EVENT, BUSCA_LIMPAR_EVENT } from "@/components/store/SearchWhats";
 import { Container } from "@/components/ui/Container";
 import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
+import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { CATEGORIES, type CategoryId } from "@/content/categories";
 import { PRODUCTS } from "@/content/products";
 import { cn } from "@/lib/utils";
+import { whatsappUrl } from "@/lib/whatsapp";
 
 type Filter = CategoryId | "todos";
 
 const formatMetros = (value: number): string =>
   value.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
 
+/* Normaliza para busca: minusculas e sem acentos */
+const normalizar = (value: string): string =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "");
+
 /*
- * Grade com filtro real por categoria. Alem dos chips locais, qualquer
- * elemento da pagina com [data-filter] (tiles de categoria, links do
- * rodape) aciona o filtro — a navegacao por ancora cuida do scroll.
+ * Grade com filtro real por categoria e por busca. Alem dos chips locais,
+ * qualquer elemento com [data-filter] (banners, tiles, links do rodape)
+ * aciona o filtro, e a busca do header filtra por texto via BUSCA_EVENT.
  */
 export function ProductGrid() {
   const [filtro, setFiltro] = useState<Filter>("todos");
+  const [busca, setBusca] = useState("");
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
       const target = event.target as Element | null;
       const trigger = target?.closest?.("[data-filter]");
       const categoria = trigger?.getAttribute("data-filter") as CategoryId | null;
-      if (categoria) setFiltro(categoria);
+      if (categoria) {
+        setFiltro(categoria);
+        setBusca("");
+        window.dispatchEvent(new Event(BUSCA_LIMPAR_EVENT));
+      }
+    };
+    const handleBusca = (event: Event) => {
+      const term = (event as CustomEvent<string>).detail ?? "";
+      setBusca(term);
+      if (term.trim()) setFiltro("todos");
     };
     document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    window.addEventListener(BUSCA_EVENT, handleBusca);
+    return () => {
+      document.removeEventListener("click", handleClick);
+      window.removeEventListener(BUSCA_EVENT, handleBusca);
+    };
   }, []);
 
-  const produtos =
+  const selecionarCategoria = (novoFiltro: Filter) => {
+    setFiltro(novoFiltro);
+    setBusca("");
+    window.dispatchEvent(new Event(BUSCA_LIMPAR_EVENT));
+  };
+
+  const buscaAtiva = busca.trim().length > 0;
+  const termo = normalizar(busca.trim());
+
+  const porCategoria =
     filtro === "todos"
       ? PRODUCTS
       : PRODUCTS.filter((product) => product.category === filtro);
+
+  const produtos = buscaAtiva
+    ? porCategoria.filter((product) =>
+        normalizar(
+          `${product.title} ${product.description} ${product.waLabel}`,
+        ).includes(termo),
+      )
+    : porCategoria;
 
   return (
     <section
@@ -64,8 +106,8 @@ export function ProductGrid() {
           className="mt-6 flex flex-wrap gap-2"
         >
           <FilterChip
-            active={filtro === "todos"}
-            onClick={() => setFiltro("todos")}
+            active={filtro === "todos" && !buscaAtiva}
+            onClick={() => selecionarCategoria("todos")}
           >
             Todos
           </FilterChip>
@@ -73,12 +115,55 @@ export function ProductGrid() {
             <FilterChip
               key={category.id}
               active={filtro === category.id}
-              onClick={() => setFiltro(category.id)}
+              onClick={() => selecionarCategoria(category.id)}
             >
               {category.label}
             </FilterChip>
           ))}
         </div>
+
+        {buscaAtiva && (
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-sm text-grafite-600">
+            <span>
+              Resultados para{" "}
+              <strong className="text-grafite-900">“{busca.trim()}”</strong> —{" "}
+              {produtos.length}{" "}
+              {produtos.length === 1 ? "produto" : "produtos"}
+            </span>
+            <button
+              type="button"
+              onClick={() => selecionarCategoria("todos")}
+              className="inline-flex items-center gap-1 rounded-full border border-prata-200 bg-white px-3 py-1 text-xs font-semibold text-grafite-600 transition-colors hover:border-prata-300 hover:text-grafite-900"
+            >
+              <X aria-hidden="true" className="size-3" />
+              Limpar busca
+            </button>
+          </div>
+        )}
+
+        {buscaAtiva && produtos.length === 0 && (
+          <div className="hairline-light mt-7 rounded-2xl bg-white p-8 text-center">
+            <p className="font-display text-lg font-bold text-grafite-900">
+              Não encontramos “{busca.trim()}” no catálogo
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-grafite-600">
+              Mas como tudo aqui é sob medida, é bem provável que a gente
+              fabrique. Conte o que você precisa direto no WhatsApp:
+            </p>
+            <a
+              href={whatsappUrl(
+                `Olá! Estou procurando: ${busca.trim()}. Vocês fazem?`,
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-wa="busca-sem-resultado"
+              className="mt-5 inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-verde-600 px-6 text-sm font-semibold text-white shadow-[0_10px_28px_-10px_rgba(21,128,61,0.65)] transition-all hover:-translate-y-0.5 hover:brightness-110"
+            >
+              <WhatsAppIcon />
+              Perguntar no WhatsApp
+            </a>
+          </div>
+        )}
 
         <div className="mt-7 grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4">
           {produtos.map((product, index) => (

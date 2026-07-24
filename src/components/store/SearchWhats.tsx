@@ -1,30 +1,41 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Search } from "lucide-react";
 
-import { whatsappUrl } from "@/lib/whatsapp";
+export const BUSCA_EVENT = "tecalumi:busca";
+export const BUSCA_LIMPAR_EVENT = "tecalumi:busca-limpar";
 
 /*
- * "Busca" que converte: o visitante digita o que procura e a mensagem
- * ja chega pronta no WhatsApp. Nao existe catalogo para buscar — em vez
- * de um campo quebrado, o elemento vira um atalho de orcamento.
+ * Busca do header: filtra a grade de produtos em tempo real (evento
+ * BUSCA_EVENT consumido pelo ProductGrid). Enter/lupa rola ate a grade.
+ * Quando a grade limpa a busca (ex.: usuario escolheu uma categoria),
+ * o campo se esvazia via BUSCA_LIMPAR_EVENT.
  */
 export function SearchWhats() {
   const [query, setQuery] = useState("");
 
+  useEffect(() => {
+    const limpar = () => setQuery("");
+    window.addEventListener(BUSCA_LIMPAR_EVENT, limpar);
+    return () => window.removeEventListener(BUSCA_LIMPAR_EVENT, limpar);
+  }, []);
+
+  const emitir = (term: string) => {
+    window.dispatchEvent(new CustomEvent<string>(BUSCA_EVENT, { detail: term }));
+  };
+
+  const handleChange = (term: string) => {
+    setQuery(term);
+    emitir(term);
+  };
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const term = query.trim();
-    const message = term
-      ? `Olá! Estou procurando: ${term}. Pode me passar um orçamento?`
-      : undefined;
-
-    window.dataLayer?.push({ event: "whatsapp_click", source: "busca" });
-    window.gtag?.("event", "whatsapp_click", { source: "busca" });
-    window.fbq?.("track", "Contact", { source: "busca" });
-
-    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    emitir(query);
+    document
+      .querySelector("#produtos")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -37,14 +48,14 @@ export function SearchWhats() {
         <input
           type="text"
           value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => handleChange(event.target.value)}
           placeholder="Digite o que você precisa: janela, porta, portão…"
-          aria-label="Descreva o que você procura"
+          aria-label="Buscar produtos"
           className="h-9 flex-1 bg-transparent text-sm text-grafite-900 placeholder:text-grafite-600/70 focus:outline-none"
         />
         <button
           type="submit"
-          aria-label="Pedir orçamento no WhatsApp"
+          aria-label="Buscar e ver resultados"
           className="flex size-9 shrink-0 items-center justify-center rounded-full bg-azul-500 text-white transition-colors hover:bg-azul-400"
         >
           <Search aria-hidden="true" className="size-4" />

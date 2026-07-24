@@ -3,9 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
-import { productWhatsappUrl } from "@/lib/whatsapp";
+import type { CategoryId } from "@/content/categories";
 
-/* Dois banners de categoria em destaque, logo abaixo do hero */
+/*
+ * Banners de categoria em destaque: clicar filtra a grade de produtos
+ * ([data-filter]) e rola ate ela (ancora #produtos).
+ */
 export function CategoryBanners() {
   return (
     <section aria-label="Destaques" className="bg-white py-10 md:py-14">
@@ -13,15 +16,13 @@ export function CategoryBanners() {
         <div className="grid gap-5 md:grid-cols-2">
           <Banner
             title="Janelas"
-            waLabel="janelas de alumínio sob medida"
-            waSource="banner-janelas"
+            filterId="janelas"
             placeholder="janela"
             className="bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950"
           />
           <Banner
             title="Portas"
-            waLabel="portas de alumínio sob medida"
-            waSource="banner-portas"
+            filterId="portas"
             placeholder="porta"
             className="bg-gradient-to-br from-azul-500 via-navy-700 to-navy-900"
           />
@@ -33,25 +34,23 @@ export function CategoryBanners() {
 
 interface BannerProps {
   title: string;
-  waLabel: string;
-  waSource: string;
+  filterId: CategoryId;
   placeholder: "janela" | "porta";
   className?: string;
 }
 
-function Banner({ title, waLabel, waSource, placeholder, className }: BannerProps) {
+function Banner({ title, filterId, placeholder, className }: BannerProps) {
   return (
     <Reveal>
       <a
-        href={productWhatsappUrl(waLabel)}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-wa={waSource}
+        href="#produtos"
+        data-filter={filterId}
+        aria-label={`Ver produtos de ${title}`}
         className={`group relative flex h-48 items-center overflow-hidden rounded-2xl p-7 md:h-56 ${className ?? ""}`}
       >
         <div className="absolute inset-y-0 right-0 w-1/2 opacity-60 transition-transform duration-500 group-hover:scale-105">
           <div className="relative h-full w-full">
-            <ProjectPlaceholder variant={placeholder} idPrefix={`banner-${waSource}`} />
+            <ProjectPlaceholder variant={placeholder} idPrefix={`banner-${filterId}`} />
           </div>
         </div>
         <div
@@ -66,7 +65,7 @@ function Banner({ title, waLabel, waSource, placeholder, className }: BannerProp
             Sob medida
           </span>
           <span className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors group-hover:text-white">
-            Pedir orçamento
+            Ver produtos
             <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
           </span>
         </div>
