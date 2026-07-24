@@ -15,6 +15,18 @@ const formatMetros = (value: number): string =>
   value.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
 
 /*
+ * Mascara de metros: o visitante digita apenas numeros e a virgula entra
+ * sozinha, como em campos de dinheiro. "240" -> "2,40" · "80" -> "0,80".
+ * Limite de 4 digitos (99,99 m) cobre qualquer produto do catalogo.
+ */
+const maskMetros = (raw: string): string => {
+  const digits = raw.replace(/\D/g, "").replace(/^0+/, "").slice(0, 4);
+  if (!digits) return "";
+  const padded = digits.padStart(3, "0");
+  return `${padded.slice(0, -2)},${padded.slice(-2)}`;
+};
+
+/*
  * Calculador de medidas: o visitante informa largura x altura, cor e
  * quantidade, e a mensagem chega estruturada no WhatsApp — lead
  * pre-qualificado com as especificacoes do pedido.
@@ -114,9 +126,9 @@ export function CalcularButton({ product }: CalcularButtonProps) {
               </span>
               <input
                 type="text"
-                inputMode="decimal"
+                inputMode="numeric"
                 value={largura}
-                onChange={(event) => setLargura(event.target.value)}
+                onChange={(event) => setLargura(maskMetros(event.target.value))}
                 placeholder={`Ex.: ${formatMetros(medidas.larguraMin)}`}
                 className="h-11 rounded-lg border border-prata-200 px-3 text-sm text-grafite-900 placeholder:text-grafite-600/50 focus:border-azul-500 focus:outline-none"
               />
@@ -131,9 +143,9 @@ export function CalcularButton({ product }: CalcularButtonProps) {
               </span>
               <input
                 type="text"
-                inputMode="decimal"
+                inputMode="numeric"
                 value={altura}
-                onChange={(event) => setAltura(event.target.value)}
+                onChange={(event) => setAltura(maskMetros(event.target.value))}
                 placeholder={`Ex.: ${formatMetros(medidas.alturaMin)}`}
                 className="h-11 rounded-lg border border-prata-200 px-3 text-sm text-grafite-900 placeholder:text-grafite-600/50 focus:border-azul-500 focus:outline-none"
               />
