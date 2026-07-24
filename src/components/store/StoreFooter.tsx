@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { FacebookIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { Logo } from "@/components/ui/Logo";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { SITE } from "@/lib/site";
+import { MAPS_URL, SITE } from "@/lib/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 
 const INSTITUCIONAL = [
@@ -120,13 +120,20 @@ export function StoreFooter() {
                   {SITE.email}
                 </a>
               </li>
-              <li className="inline-flex items-start gap-2.5">
-                <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-azul-500" />
-                <span>
-                  {SITE.address.street} — {SITE.address.district},{" "}
-                  {SITE.address.city}/{SITE.address.state} · CEP{" "}
-                  {SITE.address.zip}
-                </span>
+              <li>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-start gap-2.5 transition-colors hover:text-navy-900"
+                >
+                  <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-azul-500" />
+                  <span className="underline decoration-prata-300 underline-offset-2">
+                    {SITE.address.street} — {SITE.address.district},{" "}
+                    {SITE.address.city}/{SITE.address.state} · CEP{" "}
+                    {SITE.address.zip}
+                  </span>
+                </a>
               </li>
               <li className="inline-flex items-center gap-2.5">
                 <Clock aria-hidden="true" className="size-4 text-azul-500" />
@@ -177,10 +184,15 @@ export function StoreFooter() {
             <h3 className="text-sm font-bold text-grafite-900">
               Desenvolvido por
             </h3>
-            {/* TODO(dev): trocar pela marca/link do estudio */}
-            <p className="mt-3 text-sm font-semibold text-grafite-600">
-              Projetos Dunamis
-            </p>
+            <a
+              href={SITE.developedBy.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-grafite-600 transition-colors hover:text-navy-900"
+            >
+              <InstagramIcon className="text-azul-500" />
+              {SITE.developedBy.name}
+            </a>
           </div>
         </Container>
       </div>

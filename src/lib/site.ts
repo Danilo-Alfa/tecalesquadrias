@@ -33,10 +33,15 @@ export const SITE = {
   // TODO(cliente): CNPJ (vazio = nao exibido no rodape)
   cnpj: "",
 
-  // TODO(cliente): URLs das redes (vazio = icone nao exibido)
   social: {
-    instagram: "",
+    instagram: "https://www.instagram.com/tecalesquadrias/",
+    // TODO(cliente): URL do Facebook, se existir (vazio = icone nao exibido)
     facebook: "",
+  },
+
+  developedBy: {
+    name: "Dunamis MKT",
+    url: "https://www.instagram.com/dunamis_mkt/",
   },
 
   // TODO(cliente): codigo de verificacao do Google Search Console
@@ -46,3 +51,8 @@ export const SITE = {
 
 export const DEFAULT_WHATSAPP_MESSAGE =
   "Olá! Vi o site da TEC ALUMI e quero um orçamento de esquadrias sob medida.";
+
+/* Link do endereco no Google Maps (abre o app no celular) */
+export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${SITE.address.street}, ${SITE.address.district}, ${SITE.address.city} - ${SITE.address.state}, ${SITE.address.zip}`,
+)}`;

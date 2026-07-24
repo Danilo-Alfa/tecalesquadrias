@@ -1,8 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
-import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { InstagramIcon } from "@/components/ui/SocialIcons";
 import { SITE } from "@/lib/site";
-import { whatsappUrl } from "@/lib/whatsapp";
 
 export function FactoryBlock() {
   return (
@@ -34,16 +33,13 @@ export function FactoryBlock() {
             </p>
           </div>
           <a
-            href={whatsappUrl(
-              "Olá! Quero conhecer a fábrica da TEC ALUMI e conversar sobre um projeto.",
-            )}
+            href={SITE.social.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            data-wa="fabrica"
             className="mt-6 inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-navy-900 px-6 text-sm font-semibold text-white transition-all hover:bg-navy-800 active:scale-[0.98]"
           >
-            <WhatsAppIcon className="size-4 text-verde-500" />
-            Falar com a fábrica
+            <InstagramIcon className="text-azul-400" />
+            Ver a fábrica no Instagram
           </a>
         </Reveal>
       </Container>
