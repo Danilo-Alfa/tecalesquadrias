@@ -4,7 +4,8 @@ export type PlaceholderVariant =
   | "portao"
   | "fachada"
   | "vidro"
-  | "projeto";
+  | "projeto"
+  | "grade";
 
 interface ProjectPlaceholderProps {
   variant: PlaceholderVariant;
@@ -138,6 +139,17 @@ function Artwork({ variant, frame, glass }: ArtworkProps) {
           <circle cx="216" cy="155" r="4" fill={frame} />
           <path d="M128 130l40-56" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.6" />
           <path d="M222 220l40-56" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.45" />
+        </g>
+      );
+    case "grade":
+      return (
+        <g>
+          <rect x="90" y="60" width="220" height="180" rx="6" fill="none" stroke={frame} strokeWidth="5" />
+          {[124, 158, 192, 226, 260, 294].map((x) => (
+            <line key={x} x1={x} y1="66" x2={x} y2="234" stroke={frame} strokeWidth="3" />
+          ))}
+          <path d="M110 110l30-26" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.5" />
+          <path d="M240 200l34-26" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.4" />
         </g>
       );
     case "projeto":

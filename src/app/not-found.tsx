@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Logo } from "@/components/ui/Logo";
@@ -18,9 +19,9 @@ export default function NotFound() {
       </div>
 
       <div className="relative">
-        <a href="/" className="inline-block">
+        <Link href="/" className="inline-block">
           <Logo idPrefix="logo-404" />
-        </a>
+        </Link>
         <p className="font-display text-metallic mt-10 text-7xl font-bold md:text-8xl">
           404
         </p>

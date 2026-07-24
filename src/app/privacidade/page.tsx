@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
@@ -22,16 +23,16 @@ export default function PrivacidadePage() {
     <main className="bg-white">
       <header className="border-b border-white/10 bg-navy-950">
         <Container className="flex h-16 items-center justify-between md:h-[4.5rem]">
-          <a href="/">
+          <Link href="/">
             <Logo idPrefix="logo-privacidade" />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm font-medium text-prata-300 transition-colors hover:text-white"
           >
             <ArrowLeft aria-hidden="true" className="size-4" />
             Voltar ao site
-          </a>
+          </Link>
         </Container>
       </header>
 

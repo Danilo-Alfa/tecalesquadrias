@@ -50,14 +50,14 @@ export function FloatingCta() {
         href={whatsappUrl()}
         target="_blank"
         rel="noopener noreferrer"
-        data-wa="bolha-desktop"
-        aria-label="Falar com a TEC ALUMI no WhatsApp"
+        data-wa="pilula-desktop"
         className={cn(
-          "fixed bottom-6 right-6 z-40 hidden size-14 items-center justify-center rounded-full bg-verde-500 text-white shadow-[0_12px_32px_-8px_rgba(37,211,102,0.55)] transition-all duration-300 hover:scale-105 lg:flex",
+          "fixed bottom-6 right-6 z-40 hidden h-13 items-center gap-2.5 rounded-full bg-verde-600 px-6 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(21,128,61,0.6)] transition-all duration-300 hover:scale-105 hover:brightness-110 lg:flex",
           visible ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >
-        <WhatsAppIcon className="size-7" />
+        <WhatsAppIcon className="size-5" />
+        Orçamento rápido
       </a>
     </>
   );

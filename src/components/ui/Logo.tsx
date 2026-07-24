@@ -5,13 +5,20 @@ interface LogoProps {
   idPrefix: string;
   className?: string;
   withTagline?: boolean;
+  /** tone define o contraste do wordmark conforme o fundo */
+  tone?: "dark" | "light";
 }
 
 /*
  * Recriacao vetorial da marca para uso em tela (a arte original e bitmap).
  * Janela de 4 folhas com moldura metalica, fiel a logo fornecida.
  */
-export function Logo({ idPrefix, className, withTagline = true }: LogoProps) {
+export function Logo({
+  idPrefix,
+  className,
+  withTagline = true,
+  tone = "dark",
+}: LogoProps) {
   const frameId = `${idPrefix}-frame`;
   const glassId = `${idPrefix}-glass`;
 
@@ -59,11 +66,21 @@ export function Logo({ idPrefix, className, withTagline = true }: LogoProps) {
         <path d="M27 40l7-6" stroke="#5B8CFF" strokeWidth="1.4" opacity="0.5" />
       </svg>
       <span className="flex flex-col">
-        <span className="font-display text-metallic text-lg font-bold leading-none tracking-[0.14em]">
+        <span
+          className={cn(
+            "font-display text-lg font-bold leading-none tracking-[0.14em]",
+            tone === "dark" ? "text-metallic" : "text-navy-900",
+          )}
+        >
           TEC ALUMI
         </span>
         {withTagline && (
-          <span className="mt-1.5 text-[0.5625rem] font-medium uppercase leading-none tracking-[0.28em] text-prata-400">
+          <span
+            className={cn(
+              "mt-1.5 text-[0.5625rem] font-medium uppercase leading-none tracking-[0.28em]",
+              tone === "dark" ? "text-prata-400" : "text-grafite-600",
+            )}
+          >
             Qualidade que Reflete
           </span>
         )}

@@ -1,16 +1,15 @@
-import { Differentials } from "@/components/sections/Differentials";
-import { Faq } from "@/components/sections/Faq";
-import { FinalCta } from "@/components/sections/FinalCta";
 import { FloatingCta } from "@/components/sections/FloatingCta";
-import { Footer } from "@/components/sections/Footer";
-import { Gallery } from "@/components/sections/Gallery";
-import { Header } from "@/components/sections/Header";
-import { Hero } from "@/components/sections/Hero";
-import { Process } from "@/components/sections/Process";
-import { Products } from "@/components/sections/Products";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { TrustBar } from "@/components/sections/TrustBar";
-import { faqJsonLd, localBusinessJsonLd } from "@/lib/seo";
+import { CategoryBanners } from "@/components/store/CategoryBanners";
+import { CategoryTiles } from "@/components/store/CategoryTiles";
+import { CtaBanner } from "@/components/store/CtaBanner";
+import { FactoryBlock } from "@/components/store/FactoryBlock";
+import { ProductGrid } from "@/components/store/ProductGrid";
+import { StoreFooter } from "@/components/store/StoreFooter";
+import { StoreHeader } from "@/components/store/StoreHeader";
+import { StoreHero } from "@/components/store/StoreHero";
+import { Topbar } from "@/components/store/Topbar";
+import { WhatsBar } from "@/components/store/WhatsBar";
+import { localBusinessJsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
@@ -18,22 +17,21 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([localBusinessJsonLd(), faqJsonLd()]),
+          __html: JSON.stringify([localBusinessJsonLd()]),
         }}
       />
-      <Header />
+      <Topbar />
+      <StoreHeader />
+      <WhatsBar />
       <main>
-        <Hero />
-        <TrustBar />
-        <Products />
-        <Differentials />
-        <Process />
-        <Gallery />
-        <Testimonials />
-        <Faq />
-        <FinalCta />
+        <StoreHero />
+        <CategoryBanners />
+        <ProductGrid />
+        <CategoryTiles />
+        <CtaBanner />
+        <FactoryBlock />
       </main>
-      <Footer />
+      <StoreFooter />
       <FloatingCta />
     </>
   );

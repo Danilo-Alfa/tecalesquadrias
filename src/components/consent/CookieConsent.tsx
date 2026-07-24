@@ -19,7 +19,9 @@ export function CookieConsent() {
       return;
     }
     if (stored === null) {
-      setVisible(true);
+      // atraso curto: nao compete com o paint inicial do hero
+      const timer = window.setTimeout(() => setVisible(true), 600);
+      return () => window.clearTimeout(timer);
     }
   }, []);
 
