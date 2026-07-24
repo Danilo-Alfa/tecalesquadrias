@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin } from "lucide-react";
+import { Clock, LockKeyhole, Mail, MapPin, ShieldCheck } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
 import { FacebookIcon, InstagramIcon } from "@/components/ui/SocialIcons";
@@ -140,6 +140,54 @@ export function StoreFooter() {
           </div>
         </div>
       </Container>
+
+      <div className="border-t border-prata-200">
+        <Container className="grid gap-8 py-8 sm:grid-cols-3">
+          <div>
+            <h3 className="text-sm font-bold text-grafite-900">
+              Formas de Pagamento
+            </h3>
+            {/* TODO(cliente): confirmar formas de pagamento aceitas */}
+            <div className="mt-3 flex flex-wrap gap-2">
+              {["Pix", "Cartão de crédito", "Cartão de débito", "Transferência"].map(
+                (forma) => (
+                  <span
+                    key={forma}
+                    className="rounded-md border border-prata-200 bg-white px-2.5 py-1 text-xs font-medium text-grafite-600"
+                  >
+                    {forma}
+                  </span>
+                ),
+              )}
+            </div>
+            <p className="mt-2 text-[0.6875rem] text-grafite-600/80">
+              Condições combinadas no orçamento
+            </p>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-grafite-900">Segurança</h3>
+            <ul className="mt-3 flex flex-col gap-2 text-xs text-grafite-600">
+              <li className="inline-flex items-center gap-2">
+                <LockKeyhole aria-hidden="true" className="size-3.5 text-azul-500" />
+                Conexão segura (SSL)
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <ShieldCheck aria-hidden="true" className="size-3.5 text-azul-500" />
+                Seus dados protegidos — LGPD
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-grafite-900">
+              Desenvolvido por
+            </h3>
+            {/* TODO(dev): trocar pela marca/link do estudio */}
+            <p className="mt-3 text-sm font-semibold text-grafite-600">
+              Projetos Dunamis
+            </p>
+          </div>
+        </Container>
+      </div>
 
       <div className="border-t border-prata-200">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-grafite-600 md:flex-row">

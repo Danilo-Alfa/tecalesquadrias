@@ -59,13 +59,13 @@ function Banner({ title, waLabel, waSource, placeholder, className }: BannerProp
           className="absolute inset-0 -translate-x-[160%] skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[160%]"
         />
         <div className="relative">
-          <span className="inline-block rounded-md bg-white px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-navy-950">
-            Sob medida
-          </span>
-          <h3 className="font-display mt-3 text-4xl font-bold uppercase tracking-tight text-white md:text-5xl">
+          <h3 className="font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-6xl lg:text-7xl">
             {title}
           </h3>
-          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors group-hover:text-white">
+          <span className="mt-3 inline-block rounded-md bg-navy-950 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-lg">
+            Sob medida
+          </span>
+          <span className="mt-3 flex items-center gap-1.5 text-sm font-semibold text-white/90 transition-colors group-hover:text-white">
             Pedir orçamento
             <ArrowRight aria-hidden="true" className="size-4 transition-transform group-hover:translate-x-1" />
           </span>

@@ -40,18 +40,21 @@ export function ProductGrid() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-4">
-                  <h3 className="font-display text-[0.8125rem] font-bold uppercase tracking-wide text-grafite-900">
+                  <h3 className="text-xs font-semibold uppercase tracking-wide text-grafite-600">
                     {product.title}
                   </h3>
-                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-grafite-600">
+                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-grafite-600/80">
                     {product.description}
                   </p>
-                  <p className="mt-3 text-xs text-grafite-600">
-                    Orçamento gratuito:
-                  </p>
-                  <p className="font-display text-base font-bold text-azul-500">
-                    100% sob medida
-                  </p>
+                  <div className="mt-3 border-t border-prata-100 pt-3">
+                    <p className="text-xs text-grafite-600">Orçamento gratuito:</p>
+                    <p className="font-display text-xl font-bold text-azul-500">
+                      Sob medida
+                    </p>
+                    <p className="mt-0.5 text-[0.6875rem] text-grafite-600/80">
+                      No tamanho exato do seu vão
+                    </p>
+                  </div>
                   <a
                     href={productWhatsappUrl(product.waLabel)}
                     target="_blank"

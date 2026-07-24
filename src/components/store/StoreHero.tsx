@@ -70,7 +70,7 @@ export function StoreHero() {
           {HERO_BADGES.map((badge) => (
             <li
               key={badge.title}
-              className="hairline-dark rounded-2xl bg-white/[0.04] px-4 py-5 backdrop-blur-sm"
+              className="rounded-2xl border border-azul-400/25 bg-gradient-to-b from-navy-800/80 to-navy-900/80 px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_28px_-16px_rgba(5,11,26,0.9)] backdrop-blur-sm"
             >
               <span className="mx-auto flex size-11 items-center justify-center rounded-xl border border-azul-400/30 bg-azul-500/15">
                 <badge.icon aria-hidden="true" className="size-5 text-azul-400" strokeWidth={1.6} />
@@ -89,7 +89,7 @@ export function StoreHero() {
           <ButtonLink
             href="#produtos"
             size="lg"
-            className="w-full sm:w-auto sm:px-9"
+            className="w-full font-bold uppercase tracking-wide sm:w-auto sm:px-10"
           >
             Pedir orçamento
             <ArrowRight aria-hidden="true" className="size-5" />
