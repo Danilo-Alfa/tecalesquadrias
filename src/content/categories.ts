@@ -1,7 +1,13 @@
 import { DoorOpen, Fence, Grid2x2, PanelsTopLeft, type LucideIcon } from "lucide-react";
 
+export type CategoryId =
+  | "janelas"
+  | "portas"
+  | "portoes-grades"
+  | "fachadas-vidros";
+
 export interface Category {
-  id: string;
+  id: CategoryId;
   label: string;
   waLabel: string;
   icon: LucideIcon;

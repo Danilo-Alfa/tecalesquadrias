@@ -14,10 +14,10 @@ const INSTITUCIONAL = [
 ] as const;
 
 const CATEGORIAS = [
-  { label: "Janelas", wa: "janelas de alumínio sob medida" },
-  { label: "Portas", wa: "portas de alumínio sob medida" },
-  { label: "Portões e grades", wa: "portões e grades de alumínio" },
-  { label: "Fachadas e vidros", wa: "fachadas e vidros temperados" },
+  { id: "janelas", label: "Janelas" },
+  { id: "portas", label: "Portas" },
+  { id: "portoes-grades", label: "Portões e grades" },
+  { id: "fachadas-vidros", label: "Fachadas e vidros" },
 ] as const;
 
 export function StoreFooter() {
@@ -83,14 +83,10 @@ export function StoreFooter() {
             <h3 className="text-sm font-bold text-grafite-900">Categorias</h3>
             <ul className="mt-4 flex flex-col gap-2.5">
               {CATEGORIAS.map((categoria) => (
-                <li key={categoria.label}>
+                <li key={categoria.id}>
                   <a
-                    href={whatsappUrl(
-                      `Olá! Vi o site da TEC ALUMI e quero um orçamento de ${categoria.wa}.`,
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-wa={`footer-${categoria.label}`}
+                    href="#produtos"
+                    data-filter={categoria.id}
                     className="text-sm text-grafite-600 transition-colors hover:text-navy-900"
                   >
                     {categoria.label}

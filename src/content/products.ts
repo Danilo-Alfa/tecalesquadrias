@@ -1,3 +1,5 @@
+import type { CategoryId } from "@/content/categories";
+
 export interface ProductMeasures {
   /** Faixas em metros */
   larguraMin: number;
@@ -22,6 +24,7 @@ export interface Product {
     | "projeto"
     | "grade";
   medidas: ProductMeasures;
+  category: CategoryId;
 }
 
 // TODO(cliente): substituir placeholders por fotos reais e confirmar as
@@ -34,6 +37,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "janela de correr sob medida",
     placeholder: "janela",
     medidas: { larguraMin: 0.8, larguraMax: 3, alturaMin: 0.8, alturaMax: 1.6 },
+    category: "janelas",
   },
   {
     id: "janela-maxim-ar",
@@ -42,6 +46,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "janela maxim-ar sob medida",
     placeholder: "janela",
     medidas: { larguraMin: 0.4, larguraMax: 1.5, alturaMin: 0.4, alturaMax: 1.2 },
+    category: "janelas",
   },
   {
     id: "porta-de-correr",
@@ -50,6 +55,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "porta de correr sob medida",
     placeholder: "porta",
     medidas: { larguraMin: 1.5, larguraMax: 4, alturaMin: 2, alturaMax: 2.4 },
+    category: "portas",
   },
   {
     id: "porta-pivotante",
@@ -58,6 +64,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "porta pivotante sob medida",
     placeholder: "porta",
     medidas: { larguraMin: 0.8, larguraMax: 1.5, alturaMin: 2.1, alturaMax: 2.5 },
+    category: "portas",
   },
   {
     id: "portao",
@@ -66,6 +73,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "portão de alumínio sob medida",
     placeholder: "portao",
     medidas: { larguraMin: 2, larguraMax: 6, alturaMin: 1.5, alturaMax: 2.5 },
+    category: "portoes-grades",
   },
   {
     id: "fachada",
@@ -74,6 +82,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "fachada em pele de vidro",
     placeholder: "fachada",
     medidas: { larguraMin: 2, larguraMax: 15, alturaMin: 2, alturaMax: 10 },
+    category: "fachadas-vidros",
   },
   {
     id: "vidros",
@@ -82,6 +91,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "box e vidros temperados",
     placeholder: "vidro",
     medidas: { larguraMin: 0.6, larguraMax: 3, alturaMin: 1.6, alturaMax: 2.2 },
+    category: "fachadas-vidros",
   },
   {
     id: "grade",
@@ -90,6 +100,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "grade de alumínio sob medida",
     placeholder: "grade",
     medidas: { larguraMin: 0.4, larguraMax: 3, alturaMin: 0.4, alturaMax: 2.2 },
+    category: "portoes-grades",
   },
 ] as const;
 

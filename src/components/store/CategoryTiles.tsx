@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { CATEGORIES } from "@/content/categories";
-import { productWhatsappUrl } from "@/lib/whatsapp";
 
 export function CategoryTiles() {
   return (
@@ -24,10 +23,9 @@ export function CategoryTiles() {
           {CATEGORIES.map((category, index) => (
             <Reveal key={category.id} delay={index * 0.06}>
               <a
-                href={productWhatsappUrl(category.waLabel)}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-wa={`categoria-${category.id}`}
+                href="#produtos"
+                data-filter={category.id}
+                aria-label={`Ver produtos de ${category.label}`}
                 className="group block text-center"
               >
                 <span className="flex aspect-square items-center justify-center rounded-2xl bg-navy-900 transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-navy-800 group-hover:shadow-[0_16px_32px_-16px_rgba(10,23,51,0.5)]">
