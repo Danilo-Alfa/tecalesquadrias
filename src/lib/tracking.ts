@@ -5,6 +5,8 @@
  * e quando o respectivo ID estiver preenchido.
  */
 export const TRACKING = {
+  // Google Tag Manager, formato GTM-XXXXXXX
+  gtmId: "GTM-T8F6KS2Q",
   // GA4, formato G-XXXXXXXXXX
   ga4Id: "",
   // Google Ads, formato AW-XXXXXXXXX
@@ -18,7 +20,16 @@ let loaded = false;
 export function loadTrackingScripts(): void {
   if (loaded || typeof window === "undefined") return;
 
-  const { ga4Id, googleAdsId, metaPixelId } = TRACKING;
+  const { gtmId, ga4Id, googleAdsId, metaPixelId } = TRACKING;
+
+  if (gtmId) {
+    window.dataLayer = window.dataLayer ?? [];
+    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    const gtmScript = document.createElement("script");
+    gtmScript.async = true;
+    gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+    document.head.appendChild(gtmScript);
+  }
 
   if (ga4Id || googleAdsId) {
     const firstId = ga4Id || googleAdsId;

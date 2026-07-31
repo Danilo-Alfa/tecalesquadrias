@@ -5,6 +5,7 @@ import { ClickTracker } from "@/components/analytics/ClickTracker";
 import { CookieConsent } from "@/components/consent/CookieConsent";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { SITE } from "@/lib/site";
+import { TRACKING } from "@/lib/tracking";
 
 import "./globals.css";
 
@@ -84,6 +85,18 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${manrope.variable} antialiased`}
     >
       <body>
+        {/* GTM (noscript): fallback padrao para navegadores sem JavaScript */}
+        {TRACKING.gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${TRACKING.gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        )}
         <MotionProvider>{children}</MotionProvider>
         <ClickTracker />
         <CookieConsent />
