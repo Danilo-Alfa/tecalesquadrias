@@ -1,0 +1,46 @@
+name: Build e deploy para Hostinger
+
+# A cada push na main, compila o site Next.js em HTML estatico
+# e publica o resultado na branch "hostinger".
+# A Hostinger (hPanel > Avancado > GIT) fica conectada na branch
+# "hostinger" e puxa os arquivos automaticamente via webhook.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Evita dois deploys simultaneos sobrescrevendo a branch hostinger ao mesmo tempo
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+jobs:
+  build-e-publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa o codigo
+        uses: actions/checkout@v4
+
+      - name: Instala Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instala dependencias
+        run: npm ci
+
+      - name: Compila o site (gera pasta out/)
+        run: npm run build
+
+      - name: Publica a pasta out/ na branch hostinger
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: hostinger
+          commit_message: "deploy: site compilado a partir de ${{ github.sha }}"
