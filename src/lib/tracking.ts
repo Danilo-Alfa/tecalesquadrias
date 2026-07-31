@@ -1,11 +1,12 @@
 /*
  * IDs de midia paga e analytics.
  * TODO(cliente): preencher quando as contas estiverem criadas.
- * Os scripts SO sao carregados apos o consentimento de cookies (LGPD)
- * e quando o respectivo ID estiver preenchido.
+ * GA4/Ads/Pixel SO carregam apos o consentimento de cookies (LGPD)
+ * e quando o respectivo ID estiver preenchido. O GTM e a excecao:
+ * carrega para todos os visitantes, direto no layout (decisao do cliente).
  */
 export const TRACKING = {
-  // Google Tag Manager, formato GTM-XXXXXXX
+  // Google Tag Manager, formato GTM-XXXXXXX (carregado no layout, sem gate)
   gtmId: "GTM-T8F6KS2Q",
   // GA4, formato G-XXXXXXXXXX
   ga4Id: "",
@@ -20,16 +21,7 @@ let loaded = false;
 export function loadTrackingScripts(): void {
   if (loaded || typeof window === "undefined") return;
 
-  const { gtmId, ga4Id, googleAdsId, metaPixelId } = TRACKING;
-
-  if (gtmId) {
-    window.dataLayer = window.dataLayer ?? [];
-    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-    const gtmScript = document.createElement("script");
-    gtmScript.async = true;
-    gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-    document.head.appendChild(gtmScript);
-  }
+  const { ga4Id, googleAdsId, metaPixelId } = TRACKING;
 
   if (ga4Id || googleAdsId) {
     const firstId = ga4Id || googleAdsId;
