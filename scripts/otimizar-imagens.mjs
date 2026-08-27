@@ -5,8 +5,11 @@
  * Uso:
  *   1. Coloque as fotos originais (JPG/PNG) em fotos-originais/
  *   2. npm run imagens
- *   3. As versoes otimizadas (WebP + AVIF, 800px e 1200px) saem em
+ *   3. As versoes otimizadas (WebP + AVIF, 400px, 800px e 1200px) saem em
  *      public/images/, prontas para os cards e a galeria.
+ *
+ * O nome do arquivo define a chave usada em src/content/photos.ts:
+ * "janela-de-correr.jpg" gera "janela-de-correr-400.webp" e afins.
  */
 import { mkdir, readdir } from "node:fs/promises";
 import path from "node:path";
@@ -14,7 +17,9 @@ import sharp from "sharp";
 
 const INPUT_DIR = "fotos-originais";
 const OUTPUT_DIR = "public/images";
-const WIDTHS = [800, 1200];
+// 400 atende os cards de produto (exibidos a ~300px), 800 e 1200 os blocos
+// largos (hero, fabrica) e telas de alta densidade.
+const WIDTHS = [400, 800, 1200];
 const EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
 async function main() {

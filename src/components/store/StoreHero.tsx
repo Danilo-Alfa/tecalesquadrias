@@ -1,6 +1,7 @@
 import { ArrowRight, Factory, Gem, Ruler, Zap, type LucideIcon } from "lucide-react";
 
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Container } from "@/components/ui/Container";
 
 interface HeroBadge {
@@ -40,6 +41,18 @@ export function StoreHero() {
       className="relative overflow-hidden bg-navy-900"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        {/* Fachada ao fundo: esmaecida e coberta por gradiente para nao
+            competir com o texto nem derrubar o contraste do titulo. */}
+        <ProjectImage
+          photo="hero-fachada"
+          fallback="fachada"
+          idPrefix="hero-bg"
+          sizes="100vw"
+          eager
+          decorative
+          className="absolute inset-0 size-full object-cover opacity-[0.22]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/80 to-navy-900" />
         <div className="absolute -top-32 left-1/2 h-[30rem] w-[44rem] -translate-x-1/2 rounded-full bg-azul-500/20 blur-3xl" />
         <div className="absolute bottom-[-40%] right-[-10%] h-[24rem] w-[24rem] rounded-full bg-navy-700/50 blur-3xl" />
         <div className="absolute inset-y-0 left-[18%] w-px -skew-x-12 bg-gradient-to-b from-transparent via-white/10 to-transparent" />

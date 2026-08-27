@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { CalcularButton } from "@/components/store/CalculadoraSobMedida";
 import { BUSCA_EVENT, BUSCA_LIMPAR_EVENT } from "@/components/store/SearchWhats";
 import { Container } from "@/components/ui/Container";
-import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { CATEGORIES, type CategoryId } from "@/content/categories";
 import { PRODUCTS } from "@/content/products";
@@ -170,9 +170,12 @@ export function ProductGrid() {
             <Reveal key={product.id} delay={(index % 4) * 0.06}>
               <article className="group hairline-light flex h-full flex-col overflow-hidden rounded-xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_32px_-16px_rgba(10,23,51,0.35)]">
                 <div className="relative aspect-square overflow-hidden border-b border-prata-100">
-                  <ProjectPlaceholder
-                    variant={product.placeholder}
+                  <ProjectImage
+                    photo={product.photo}
+                    fallback={product.placeholder}
                     idPrefix={`produto-${product.id}`}
+                    /* 2 colunas no mobile, 4 a partir de lg */
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 45vw, 22vw"
                   />
                   <div
                     aria-hidden="true"

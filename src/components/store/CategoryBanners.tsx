@@ -2,8 +2,9 @@ import { ArrowRight } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
-import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import type { CategoryId } from "@/content/categories";
+import type { PhotoKey } from "@/content/photos";
 
 /*
  * Banners de categoria em destaque: clicar filtra a grade de produtos
@@ -17,12 +18,14 @@ export function CategoryBanners() {
           <Banner
             title="Janelas"
             filterId="janelas"
+            photo="janela-de-correr"
             placeholder="janela"
             className="bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950"
           />
           <Banner
             title="Portas"
             filterId="portas"
+            photo="porta-de-correr"
             placeholder="porta"
             className="bg-gradient-to-br from-azul-500 via-navy-700 to-navy-900"
           />
@@ -35,11 +38,12 @@ export function CategoryBanners() {
 interface BannerProps {
   title: string;
   filterId: CategoryId;
+  photo: PhotoKey;
   placeholder: "janela" | "porta";
   className?: string;
 }
 
-function Banner({ title, filterId, placeholder, className }: BannerProps) {
+function Banner({ title, filterId, photo, placeholder, className }: BannerProps) {
   return (
     <Reveal>
       <a
@@ -50,7 +54,13 @@ function Banner({ title, filterId, placeholder, className }: BannerProps) {
       >
         <div className="absolute inset-y-0 right-0 w-1/2 opacity-60 transition-transform duration-500 group-hover:scale-105">
           <div className="relative h-full w-full">
-            <ProjectPlaceholder variant={placeholder} idPrefix={`banner-${filterId}`} />
+            <ProjectImage
+              photo={photo}
+              fallback={placeholder}
+              idPrefix={`banner-${filterId}`}
+              /* metade da largura de um card que ocupa metade do container */
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
           </div>
         </div>
         <div

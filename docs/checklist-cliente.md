@@ -11,6 +11,10 @@ O que falta para o site ir ao ar. Cada item indica onde entra no codigo.
    - De preferencia com luz do dia e ambiente arrumado
    - Antes/depois: somente se houver o par das DUAS fotos do mesmo local
    - Processo: colocar em `fotos-originais/` e rodar `npm run imagens`
+   - Use como nome do arquivo a chave que ja esta em `src/content/photos.ts`
+     (ex. `janela-de-correr.jpg`) para a troca ser automatica
+   - As fotos que estao no ar agora sao de banco de imagem e servem so
+     como referencia visual do tipo de produto
 
 2. **Depoimentos reais** (os atuais sao placeholders) — `src/content/testimonials.ts`
    - 3 a 6 depoimentos com nome e bairro/cidade de cada cliente

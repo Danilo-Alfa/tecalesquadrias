@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { InstagramIcon } from "@/components/ui/SocialIcons";
 import { SITE } from "@/lib/site";
 
@@ -11,7 +12,8 @@ export function FactoryBlock() {
       className="scroll-mt-24 bg-prata-50 py-12 md:py-16"
     >
       <Container>
-        <Reveal className="max-w-2xl">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
+        <Reveal>
           <h2
             id="fabrica-heading"
             className="font-display text-2xl font-bold tracking-tight text-grafite-900 md:text-3xl"
@@ -42,6 +44,23 @@ export function FactoryBlock() {
             Ver a fábrica no Instagram
           </a>
         </Reveal>
+
+        <Reveal delay={0.1}>
+          <figure className="hairline-light overflow-hidden rounded-2xl bg-navy-900">
+            <div className="relative aspect-video">
+              <ProjectImage
+                photo="fabrica-corte"
+                fallback="projeto"
+                idPrefix="fabrica"
+                sizes="(max-width: 1024px) 100vw, 26rem"
+              />
+            </div>
+            <figcaption className="px-4 py-3 text-xs leading-relaxed text-prata-300">
+              Corte do perfil de alumínio — imagem ilustrativa do processo
+            </figcaption>
+          </figure>
+        </Reveal>
+        </div>
       </Container>
     </section>
   );

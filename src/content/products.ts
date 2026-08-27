@@ -1,4 +1,5 @@
 import type { CategoryId } from "@/content/categories";
+import type { PhotoKey } from "@/content/photos";
 
 export interface ProductMeasures {
   /** Faixas em metros */
@@ -14,6 +15,8 @@ export interface Product {
   description: string;
   /** Rotulo usado na mensagem pre-preenchida do WhatsApp */
   waLabel: string;
+  /** Foto do catalogo; ausente, cai no placeholder vetorial */
+  photo?: PhotoKey;
   /** Variante visual do placeholder ate as fotos reais chegarem */
   placeholder:
     | "janela"
@@ -27,11 +30,13 @@ export interface Product {
   category: CategoryId;
 }
 
-// TODO(cliente): substituir placeholders por fotos reais e confirmar as
-// faixas de medidas (min/max) praticadas pela fabrica em cada produto
+// TODO(cliente): as fotos atuais sao de banco de imagem e ilustram o tipo de
+// produto — trocar por fotos reais da fabrica. Confirmar tambem as faixas de
+// medidas (min/max) praticadas em cada produto.
 export const PRODUCTS: readonly Product[] = [
   {
     id: "janela-de-correr",
+    photo: "janela-de-correr",
     title: "Janela de correr",
     description: "2, 3 ou 4 folhas, com vidro liso, fumê ou temperado.",
     waLabel: "janela de correr sob medida",
@@ -41,6 +46,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "janela-maxim-ar",
+    photo: "janela-maxim-ar",
     title: "Janela maxim-ar",
     description: "Ventilação com segurança para banheiros e cozinhas.",
     waLabel: "janela maxim-ar sob medida",
@@ -50,6 +56,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "porta-de-correr",
+    photo: "porta-de-correr",
     title: "Porta de correr",
     description: "Integra ambientes com deslizamento suave e vedação.",
     waLabel: "porta de correr sob medida",
@@ -59,6 +66,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "porta-pivotante",
+    photo: "porta-pivotante",
     title: "Porta pivotante",
     description: "Entrada social imponente, no tamanho do seu vão.",
     waLabel: "porta pivotante sob medida",
@@ -68,6 +76,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "portao",
+    photo: "portao",
     title: "Portão de alumínio",
     description: "Social e garagem: leve, seguro e sem ferrugem.",
     waLabel: "portão de alumínio sob medida",
@@ -77,6 +86,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "fachada",
+    photo: "fachada",
     title: "Fachada e pele de vidro",
     description: "Presença arquitetônica para comércios e edifícios.",
     waLabel: "fachada em pele de vidro",
@@ -86,6 +96,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "vidros",
+    photo: "vidros",
     title: "Box e vidros temperados",
     description: "Box, guarda-corpos, espelhos e fechamentos.",
     waLabel: "box e vidros temperados",
@@ -95,6 +106,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "grade",
+    photo: "grade",
     title: "Grade de alumínio",
     description: "Proteção com design — e zero manutenção.",
     waLabel: "grade de alumínio sob medida",

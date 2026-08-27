@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { FacebookIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { Logo } from "@/components/ui/Logo";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { PHOTO_CREDITS } from "@/content/photos";
 import { MAPS_URL, SITE } from "@/lib/site";
 import { whatsappUrl } from "@/lib/whatsapp";
 
@@ -212,6 +213,35 @@ export function StoreFooter() {
             </a>
             <span aria-hidden="true">·</span>
             <span>{SITE.tagline}</span>
+          </p>
+        </Container>
+        {/* Pexels nao exige credito por licenca, mas pede link visivel. */}
+        <Container className="pb-5 text-[0.6875rem] leading-relaxed text-grafite-600/70">
+          <p>
+            Imagens ilustrativas de{" "}
+            <a
+              href="https://www.pexels.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-navy-900"
+            >
+              Pexels
+            </a>
+            :{" "}
+            {PHOTO_CREDITS.map((credit, index) => (
+              <span key={credit.url}>
+                {index > 0 && ", "}
+                <a
+                  href={credit.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-navy-900"
+                >
+                  {credit.author}
+                </a>
+              </span>
+            ))}
+            .
           </p>
         </Container>
       </div>

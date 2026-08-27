@@ -44,14 +44,29 @@ depoimentos reais antes de subir campanha.
 
 ## Fotos reais
 
-As ilustracoes em SVG (`ProjectPlaceholder`) sao temporarias. Quando as fotos
-chegarem:
+Os cards de produto, os banners, o hero e o bloco da fabrica ja usam fotos —
+hoje de banco de imagem (Pexels), listadas em `src/content/photos.ts` e
+creditadas no rodape. Elas ilustram o TIPO de produto; nao sao obras da TEC
+ALUMI. Quando as fotos reais chegarem:
 
-1. Colocar os originais (JPG/PNG) na pasta `fotos-originais/` (raiz do projeto).
-2. Rodar `npm run imagens` — gera WebP + AVIF em 800px e 1200px dentro de
-   `public/images/`.
-3. Trocar o `ProjectPlaceholder` por `<img>` com `srcset` nos cards de
-   produto e na galeria, com `alt` descritivo (importante para SEO).
+1. Colocar os originais (JPG/PNG) em `fotos-originais/` (raiz do projeto),
+   usando como nome do arquivo a MESMA chave de `src/content/photos.ts` —
+   ex. `janela-de-correr.jpg`. Assim a troca e drop-in.
+2. Rodar `npm run imagens` — gera WebP + AVIF em 400px, 800px e 1200px dentro
+   de `public/images/`.
+3. Em `src/content/photos.ts`, atualizar `alt`, `width`/`height` e
+   `blurDataURL` da entrada trocada, e remover o `credit` do Pexels.
+4. Renderizar sempre via `<ProjectImage>` (`src/components/ui/ProjectImage.tsx`),
+   nao via `next/image`: o site e export estatico com `images.unoptimized`,
+   entao o `<Image>` serviria o arquivo cru. O `ProjectImage` monta o
+   `<picture>` com AVIF + WebP e cai no `ProjectPlaceholder` se a foto faltar.
+
+Para gerar `blurDataURL` e conferir dimensoes:
+
+```bash
+node ~/.claude/skills/next-image-optimize/scripts/optimize.mjs fotos-originais \
+  --mode source --formats webp --out /tmp/descarte --manifest /tmp/manifest.json
+```
 
 ## Rastreamento de conversao e LGPD
 
