@@ -52,10 +52,26 @@ ALUMI. Quando as fotos reais chegarem:
 1. Colocar os originais (JPG/PNG) em `fotos-originais/` (raiz do projeto),
    usando como nome do arquivo a MESMA chave de `src/content/photos.ts` —
    ex. `janela-de-correr.jpg`. Assim a troca e drop-in.
+
+   **Foto tirada na fabrica contra a lona verde** nao vai direto: passa antes
+   pelo preparo, que neutraliza o verde para o cinza da paleta e compoe a
+   proporcao do destino.
+
+   ```bash
+   # card de produto (quadrado): a foto entra inteira, sem cortar o marco
+   node scripts/preparar-fotos-fabrica.mjs ~/Downloads/41.jpeg janela-de-correr --proporcao 1:1
+
+   # banner ou bloco largo: mantem o 4:3 da foto
+   node scripts/preparar-fotos-fabrica.mjs ~/Downloads/45.jpeg janela-banner
+   ```
+
+   O script grava direto em `fotos-originais/` e explica o porque de cada
+   etapa no cabecalho. Foto ja em ambiente (nao de fabrica) dispensa o preparo.
 2. Rodar `npm run imagens` — gera WebP + AVIF em 400px, 800px e 1200px dentro
    de `public/images/`.
 3. Em `src/content/photos.ts`, atualizar `alt`, `width`/`height` e
-   `blurDataURL` da entrada trocada, e remover o `credit` do Pexels.
+   `blurDataURL` da entrada trocada; trocar o `credit` do Pexels por
+   `propria: true`, o que tira a foto da lista de creditos do rodape.
 4. Renderizar sempre via `<ProjectImage>` (`src/components/ui/ProjectImage.tsx`),
    nao via `next/image`: o site e export estatico com `images.unoptimized`,
    entao o `<Image>` serviria o arquivo cru. O `ProjectImage` monta o

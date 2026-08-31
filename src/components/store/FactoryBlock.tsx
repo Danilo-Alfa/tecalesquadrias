@@ -49,14 +49,14 @@ export function FactoryBlock() {
           <figure className="hairline-light overflow-hidden rounded-2xl bg-navy-900">
             <div className="relative aspect-video">
               <ProjectImage
-                photo="fabrica-corte"
+                photo="fabrica-detalhe"
                 fallback="projeto"
                 idPrefix="fabrica"
                 sizes="(max-width: 1024px) 100vw, 26rem"
               />
             </div>
             <figcaption className="px-4 py-3 text-xs leading-relaxed text-prata-300">
-              Corte do perfil de alumínio — imagem ilustrativa do processo
+              Acabamento de uma porta de correr saída da nossa fábrica
             </figcaption>
           </figure>
         </Reveal>

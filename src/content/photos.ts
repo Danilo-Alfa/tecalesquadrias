@@ -6,8 +6,17 @@
  * original em fotos-originais/ com o MESMO nome desta chave e rodar o script:
  * os caminhos abaixo continuam validos.
  *
- * As fotos atuais sao de banco de imagem (Pexels) e ilustram o tipo de produto.
- * TODO(cliente): substituir por fotos reais das obras da TEC ALUMI.
+ * Duas origens convivem aqui:
+ * - `propria: true` — foto da propria TEC ALUMI, enviada pelo cliente. Sao
+ *   fotos de fabrica tiradas contra lona verde; o verde foi neutralizado
+ *   para o cinza da paleta preservando sombra, perfil e leitura do vidro.
+ * - `credit` — foto de banco de imagem (Pexels) que ilustra o tipo de
+ *   produto enquanto a foto real nao chega. Aparece nos creditos do rodape.
+ *
+ * TODO(cliente): substituir as entradas com `credit` por fotos reais. Faltam
+ * janela de correr, maxim-ar, porta pivotante, portao, fachada, box/vidros
+ * e grade. As fotos de fabrica recebidas em 2026-08-31 sao PORTAS de correr
+ * (confirmado pelo cliente), nao janelas.
  */
 
 export interface PhotoCredit {
@@ -26,31 +35,35 @@ export interface Photo {
   alt: string;
   /** Placeholder de 16px embutido, exibido enquanto a foto carrega */
   blurDataURL: string;
-  credit: PhotoCredit;
+  /** Foto da propria loja: dispensa credito de terceiro */
+  propria?: boolean;
+  /** Credito obrigatorio quando a foto vem de banco de imagem */
+  credit?: PhotoCredit;
 }
 
 export type PhotoKey =
   | "janela-de-correr"
   | "janela-maxim-ar"
   | "porta-de-correr"
+  | "porta-banner"
   | "porta-pivotante"
   | "portao"
   | "fachada"
   | "vidros"
   | "grade"
   | "hero-fachada"
-  | "fabrica-corte";
+  | "fabrica-detalhe";
 
 export const PHOTOS: Record<PhotoKey, Photo> = {
   "janela-de-correr": {
     base: "/images/janela-de-correr",
     widths: [400, 800, 1200],
     width: 1200,
-    height: 800,
-    alt: "Janela de correr de duas folhas com perfil de alumínio escuro em parede clara",
+    height: 801,
+    alt: "Sala clara com janela de correr de perfil escuro na parede e janela em fita acima",
     blurDataURL:
-      "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoQAAsAA4BaJZACdAELz5oWqT+QAPz925nyXCN8dqrWlfMZRWv5jmVg2uKpkwJl31tzNvlY1YPI53pTFSMM6wAA",
-    credit: { author: "Sóc Năng Động", url: "https://www.pexels.com/photo/modern-window-with-blue-frosted-glass-32248256/" },
+      "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAsAA4BaJaQAAu16WnfxXWAA/usqIpcsefOaEUt8Vo53fKSVAPHHEOKkIvWGX4Cbx4G4q2HUej8gAAA=",
+    credit: { author: "Max Vakhtbovych", url: "https://www.pexels.com/photo/empty-room-of-modern-apartment-7031599/" },
   },
   "janela-maxim-ar": {
     base: "/images/janela-maxim-ar",
@@ -66,11 +79,21 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     base: "/images/porta-de-correr",
     widths: [400, 800, 1200],
     width: 1200,
-    height: 800,
-    alt: "Sala integrada ao quintal por porta de correr de vidro com perfil escuro",
+    height: 1200,
+    alt: "Porta de correr de duas folhas em alumínio preto, fabricada sob medida",
     blurDataURL:
-      "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAQCdASoQAAsAA4BaJYwCdAEJ7dmCtoAA/fBPU4OPQD+70asCcxd0cuURMrM8/pl4UWdvbT0xZhUloxlLbhHFx1qujOpmeCvCzIwkDNx3XcgC2UU91geip56YwWwAAAA=",
-    credit: { author: "Pew Nguyen", url: "https://www.pexels.com/photo/a-sliding-door-with-white-curtains-13600834/" },
+      "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQABAAA4BaJZwAAuXZHlcC3xAA/Apvj0RNPVK+2Fu9v/x7Gck2TEJ7qiqPn/k/WVo78V5rQ/sWp098CMz1ib+DcRuAgAAA",
+    propria: true,
+  },
+  "porta-banner": {
+    base: "/images/porta-banner",
+    widths: [400, 800, 1200],
+    width: 1200,
+    height: 900,
+    alt: "Porta de correr de duas folhas em alumínio branco com puxadores escuros",
+    blurDataURL:
+      "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAABQAgCdASoQAAwAA4BaJZwAFgBF4mAbpVbYIgAAzIBrHroIEoTPlU14GE++Y1+/DkQNxWMVD500/0C4DxkVuzkkwW+WWGrtMgRCvKTbIa/lP0/wgcMdCgAA",
+    propria: true,
   },
   "porta-pivotante": {
     base: "/images/porta-pivotante",
@@ -117,10 +140,10 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     widths: [400, 800, 1200],
     width: 1200,
     height: 800,
-    alt: "Painéis de veneziana de alumínio branco sobre parede azul",
+    alt: "Janela protegida por grade de alumínio de barras verticais brancas",
     blurDataURL:
-      "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAsAA4BaJZACdAEU2z6AAP6NI0IIQroXKLEcaFFNT4psXcxWJPRgANAkLgAA",
-    credit: { author: "Jan van der Wolf", url: "https://www.pexels.com/photo/minimalist-blue-wall-with-aluminum-shutters-30728904/" },
+      "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoQAAsAA4BaJQBOgB4Zr5H5AAD+VF8c2ZZ6gUE+ILYlIIi8U+taXWScJS+EqinzKrDCYHYAAAA=",
+    credit: { author: "Jan van der Wolf", url: "https://www.pexels.com/photo/barred-window-of-a-building-made-of-corrugated-sheet-metal-20425182/" },
   },
   "hero-fachada": {
     base: "/images/hero-fachada",
@@ -132,21 +155,25 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
       "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAwAgCdASoQAAsAA4BaJbACdAEDfNey+5bhAAD+gt2b77OI1xjyioBvCXSOedJNcS0D+3E7N08be0j17Sf+RB95v4eABE2AAAA=",
     credit: { author: "Shreyaan Vashishtha", url: "https://www.pexels.com/photo/low-angle-shot-of-a-modern-office-building-16895158/" },
   },
-  "fabrica-corte": {
-    base: "/images/fabrica-corte",
+  "fabrica-detalhe": {
+    base: "/images/fabrica-detalhe",
     widths: [400, 800, 1200],
     width: 1200,
-    height: 800,
-    alt: "Serra de corte em operação sobre perfil metálico, com faíscas",
+    height: 900,
+    alt: "Detalhe do puxador e da fechadura de uma porta de correr em alumínio preto",
     blurDataURL:
-      "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQAAsAA4BaJQBWAB8wnnICo4EHAAD+81L/ZmfWqNQQTm6iNlyWMaTILrKHAQc2AY9zQwOW4oV0/lSQlOU9pj0AgTZEqrZ7+iWacRM3VQFh6s5BeAAAAA==",
-    credit: { author: "Critical Smith", url: "https://www.pexels.com/photo/industrial-metal-cutting-with-circular-saw-sparks-29386091/" },
+      "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAQCdASoQAAwAA4BaJZwAAh42YONgAPw8S5/s6Rd11UkWe0HJsgNikNjq6mlbaOP3k3nNeW11hY0y5kkxsTbUIAA=",
+    propria: true,
   },
 };
 
-/** Fonte unica para a lista de creditos do rodape, sem autor repetido */
+/*
+ * Creditos do rodape: so as fotos de banco entram. Foto propria da loja nao
+ * gera credito, e o rodape encolhe sozinho conforme as reais substituem.
+ */
 export const PHOTO_CREDITS: readonly PhotoCredit[] = Object.values(PHOTOS)
   .map((photo) => photo.credit)
+  .filter((credit): credit is PhotoCredit => Boolean(credit))
   .filter(
     (credit, index, all) =>
       all.findIndex((other) => other.author === credit.author) === index,

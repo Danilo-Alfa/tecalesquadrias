@@ -9,6 +9,12 @@ import type { PhotoKey } from "@/content/photos";
 /*
  * Banners de categoria em destaque: clicar filtra a grade de produtos
  * ([data-filter]) e rola ate ela (ancora #produtos).
+ *
+ * Os dois gradientes ficam na mesma familia navy, variando so o tom de
+ * partida: sao categorias de mesmo peso e nao devem parecer de niveis
+ * diferentes. O banner de Portas usava azul-500 como fundo, o que contraria
+ * docs/design-system.md ("azul-500 [...] reservado a detalhes de marca") —
+ * era a maior superficie azul do site.
  */
 export function CategoryBanners() {
   return (
@@ -25,9 +31,9 @@ export function CategoryBanners() {
           <Banner
             title="Portas"
             filterId="portas"
-            photo="porta-de-correr"
+            photo="porta-banner"
             placeholder="porta"
-            className="bg-gradient-to-br from-azul-500 via-navy-700 to-navy-900"
+            className="bg-gradient-to-br from-navy-700 via-navy-800 to-navy-950"
           />
         </div>
       </Container>
@@ -52,7 +58,16 @@ function Banner({ title, filterId, photo, placeholder, className }: BannerProps)
         aria-label={`Ver produtos de ${title}`}
         className={`group relative flex h-48 items-center overflow-hidden rounded-2xl p-7 md:h-56 ${className ?? ""}`}
       >
-        <div className="absolute inset-y-0 right-0 w-1/2 opacity-60 transition-transform duration-500 group-hover:scale-105">
+        <div
+          /*
+           * O titulo e largo e transborda a metade escura do card (medido:
+           * 35px a 1024px). Em vez de encolher a tipografia, que e a forca
+           * do banner, a foto se dissolve na borda esquerda: o texto cai
+           * sobre o gradiente do card, nao sobre a foto, e nao ha emenda
+           * dura entre os dois.
+           */
+          className="absolute inset-y-0 right-0 w-1/2 opacity-60 transition-transform duration-500 [mask-image:linear-gradient(to_right,transparent_0%,black_38%)] group-hover:scale-105"
+        >
           <div className="relative h-full w-full">
             <ProjectImage
               photo={photo}
@@ -68,7 +83,7 @@ function Banner({ title, filterId, photo, placeholder, className }: BannerProps)
           className="absolute inset-0 -translate-x-[160%] skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[160%]"
         />
         <div className="relative">
-          <h3 className="font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-6xl lg:text-7xl">
+          <h3 className="font-display text-5xl font-bold uppercase leading-[0.95] tracking-tight text-white md:text-4xl lg:text-6xl">
             {title}
           </h3>
           <span className="mt-3 inline-block rounded-md bg-navy-950 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white shadow-lg">
