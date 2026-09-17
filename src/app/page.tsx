@@ -3,6 +3,7 @@ import { CategoryBanners } from "@/components/store/CategoryBanners";
 import { CategoryTiles } from "@/components/store/CategoryTiles";
 import { CtaBanner } from "@/components/store/CtaBanner";
 import { FactoryBlock } from "@/components/store/FactoryBlock";
+import { ProductDetails } from "@/components/store/ProductDetails";
 import { ProductGrid } from "@/components/store/ProductGrid";
 import { StoreFooter } from "@/components/store/StoreFooter";
 import { StoreHeader } from "@/components/store/StoreHeader";
@@ -30,6 +31,7 @@ export default function Home() {
         <CategoryTiles />
         <CtaBanner />
         <FactoryBlock />
+        <ProductDetails />
       </main>
       <StoreFooter />
       <FloatingCta />

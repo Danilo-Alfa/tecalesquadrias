@@ -45,6 +45,7 @@ export type PhotoKey =
   | "janela-de-correr"
   | "janela-maxim-ar"
   | "porta-de-correr"
+  | "porta-de-correr-detalhes"
   | "porta-banner"
   | "porta-pivotante"
   | "portao"
@@ -76,10 +77,26 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     base: "/images/porta-de-correr",
     widths: [400, 800, 1200],
     width: 1200,
-    height: 1200,
-    alt: "Porta de correr de duas folhas em alumínio preto, fabricada sob medida",
+    height: 900,
+    alt: "Porta de correr de duas folhas em alumínio branco, vista da área externa, com a sala ao fundo",
     blurDataURL:
-      "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQABAAA4BaJZwAAuXZHlcC3xAA/Apvj0RNPVK+2Fu9v/x7Gck2TEJ7qiqPn/k/WVo78V5rQ/sWp098CMz1ib+DcRuAgAAA",
+      "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwAgCdASoQAAwAAoBCJYgCdAYwTjBXncemAAD+1zKlGZ6AA4+T7+Zb1Nm/rmvfbOK5cMKD7Rtxx0+rucXqSriUhBdm1dxVXtZT+JpnDxy+pRUC2mY3xW3CybNusrfm5K22EAAA",
+    propria: true,
+  },
+  /*
+   * Infografico com os detalhes construtivos da porta de correr. O texto
+   * vem gravado na imagem, entao o alt carrega as seis chamadas na integra
+   * — e a unica forma de leitor de tela e busca alcancarem esse conteudo.
+   */
+  "porta-de-correr-detalhes": {
+    base: "/images/porta-de-correr-detalhes",
+    widths: [400, 800, 1200],
+    width: 1200,
+    height: 900,
+    alt:
+      "Porta de correr de alumínio branco com seis detalhes ampliados: trilho superior, para deslizamento suave e silencioso; puxador e fechadura, para mais segurança e praticidade; perfil em alumínio, resistente e com acabamento impecável; trilho inferior, para mais estabilidade; e vidro temperado, para mais resistência, segurança e conforto térmico.",
+    blurDataURL:
+      "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABwAgCdASoQAAwAAoBCJYwCdH8AgoDF7NYJSuAAAP7ts6vBNVjW+49NXLhQeGzwDpR3K6wOvYQV9Xc9AG6vkBp8xg2T/oEz/Ieku9UAGrEYbvQAp54fxJrcFLqbwxU/4XCRT8YEJbuL5MXqwcYaGAAA",
     propria: true,
   },
   "porta-banner": {
