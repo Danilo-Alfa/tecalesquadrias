@@ -53,7 +53,7 @@ export function Hero() {
           </h1>
 
           <p className="animate-rise mt-6 max-w-xl text-base leading-relaxed text-prata-300 [animation-delay:140ms] md:text-lg">
-            Janelas, portas, portões, fachadas e vidros produzidos com precisão
+            Janelas, portas, portões e grades produzidos com precisão
             milimétrica — do projeto à instalação, com garantia de quem
             fabrica. Atendemos {SITE.region}.
           </p>

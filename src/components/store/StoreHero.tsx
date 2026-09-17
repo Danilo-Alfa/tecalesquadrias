@@ -29,7 +29,7 @@ const HERO_BADGES: readonly HeroBadge[] = [
   {
     icon: Gem,
     title: "Qualidade total",
-    description: "Acabamento e vidros de primeira",
+    description: "Acabamento e ferragens de primeira",
   },
 ] as const;
 
@@ -41,11 +41,11 @@ export function StoreHero() {
       className="relative overflow-hidden bg-navy-900"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        {/* Fachada ao fundo: esmaecida e coberta por gradiente para nao
-            competir com o texto nem derrubar o contraste do titulo. */}
+        {/* Foto da fabrica ao fundo: esmaecida e coberta por gradiente
+            para nao competir com o texto nem derrubar o contraste do titulo. */}
         <ProjectImage
-          photo="hero-fachada"
-          fallback="fachada"
+          photo="fabrica-detalhe"
+          fallback="porta"
           idPrefix="hero-bg"
           sizes="100vw"
           eager

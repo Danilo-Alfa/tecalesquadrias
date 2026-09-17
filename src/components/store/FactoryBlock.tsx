@@ -29,7 +29,7 @@ export function FactoryBlock() {
             </p>
             <p>
               É por isso que conseguimos entregar janelas, portas, portões e
-              fachadas 100% sob medida, com prazo definido no orçamento e
+              grades 100% sob medida, com prazo definido no orçamento e
               instalação feita por equipe própria. Qualidade que reflete em
               cada detalhe.
             </p>

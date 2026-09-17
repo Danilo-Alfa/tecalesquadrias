@@ -2,8 +2,6 @@ export type PlaceholderVariant =
   | "janela"
   | "porta"
   | "portao"
-  | "fachada"
-  | "vidro"
   | "projeto"
   | "grade";
 
@@ -108,37 +106,6 @@ function Artwork({ variant, frame, glass }: ArtworkProps) {
           ))}
           <path d="M110 90L150 62" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.5" />
           <path d="M240 200l40-28" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.4" />
-        </g>
-      );
-    case "fachada":
-      return (
-        <g>
-          {[60, 140, 220].map((x) =>
-            [30, 110, 190].map((y) => (
-              <rect
-                key={`${x}-${y}`}
-                x={x}
-                y={y}
-                width="76"
-                height="76"
-                fill={glass}
-                stroke={frame}
-                strokeWidth="2.5"
-              />
-            )),
-          )}
-          <path d="M80 90l40-44" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.55" />
-          <path d="M240 170l40-44" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.45" />
-        </g>
-      );
-    case "vidro":
-      return (
-        <g>
-          <rect x="110" y="50" width="86" height="210" rx="4" fill={glass} stroke={frame} strokeWidth="4" />
-          <rect x="204" y="50" width="86" height="210" rx="4" fill={glass} stroke={frame} strokeWidth="4" />
-          <circle cx="216" cy="155" r="4" fill={frame} />
-          <path d="M128 130l40-56" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.6" />
-          <path d="M222 220l40-56" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.45" />
         </g>
       );
     case "grade":

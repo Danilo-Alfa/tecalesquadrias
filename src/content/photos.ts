@@ -49,7 +49,6 @@ export type PhotoKey =
   | "porta-pivotante"
   | "portao"
   | "grade"
-  | "hero-fachada"
   | "fabrica-detalhe";
 
 export const PHOTOS: Record<PhotoKey, Photo> = {
@@ -122,16 +121,6 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     blurDataURL:
       "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoQAAsAA4BaJQBOgB4Zr5H5AAD+VF8c2ZZ6gUE+ILYlIIi8U+taXWScJS+EqinzKrDCYHYAAAA=",
     credit: { author: "Jan van der Wolf", url: "https://www.pexels.com/photo/barred-window-of-a-building-made-of-corrugated-sheet-metal-20425182/" },
-  },
-  "hero-fachada": {
-    base: "/images/hero-fachada",
-    widths: [400, 800, 1200],
-    width: 1200,
-    height: 800,
-    alt: "Torres de escritórios com fachada de vidro azul vistas de baixo",
-    blurDataURL:
-      "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAwAgCdASoQAAsAA4BaJbACdAEDfNey+5bhAAD+gt2b77OI1xjyioBvCXSOedJNcS0D+3E7N08be0j17Sf+RB95v4eABE2AAAA=",
-    credit: { author: "Shreyaan Vashishtha", url: "https://www.pexels.com/photo/low-angle-shot-of-a-modern-office-building-16895158/" },
   },
   "fabrica-detalhe": {
     base: "/images/fabrica-detalhe",

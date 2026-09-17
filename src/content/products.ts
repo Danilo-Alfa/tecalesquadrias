@@ -22,8 +22,6 @@ export interface Product {
     | "janela"
     | "porta"
     | "portao"
-    | "fachada"
-    | "vidro"
     | "projeto"
     | "grade";
   medidas: ProductMeasures;
