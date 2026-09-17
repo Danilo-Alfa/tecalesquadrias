@@ -43,6 +43,7 @@ export interface Photo {
 
 export type PhotoKey =
   | "janela-de-correr"
+  | "janela-banner"
   | "janela-maxim-ar"
   | "porta-de-correr"
   | "porta-de-correr-detalhes"
@@ -53,8 +54,25 @@ export type PhotoKey =
   | "fabrica-detalhe";
 
 export const PHOTOS: Record<PhotoKey, Photo> = {
+  /*
+   * Foto de catalogo, recortada em fundo branco. Foi centralizada num
+   * quadrado com margem antes de gerar os degraus: o card do produto e
+   * `aspect-square` com object-cover e, na proporcao original (4:3),
+   * o corte comeria as laterais do perfil.
+   */
   "janela-de-correr": {
     base: "/images/janela-de-correr",
+    widths: [400, 800, 1200],
+    width: 1200,
+    height: 1200,
+    alt: "Janela de correr de duas folhas em alumínio branco, vista de frente, com fecho lateral",
+    blurDataURL:
+      "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQABAAAoBCJaQAAudM1D50AAD++7GX1ul+U+C/uSliCbuGJuwofPQwVXmdkWlgAAA=",
+    propria: true,
+  },
+  /* Ambiente usado so no banner de Janelas: fundo branco nao funciona la. */
+  "janela-banner": {
+    base: "/images/janela-banner",
     widths: [400, 800, 1200],
     width: 1200,
     height: 801,

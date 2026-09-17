@@ -24,7 +24,7 @@ export function CategoryBanners() {
           <Banner
             title="Janelas"
             filterId="janelas"
-            photo="janela-de-correr"
+            photo="janela-banner"
             placeholder="janela"
             className="bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950"
           />
