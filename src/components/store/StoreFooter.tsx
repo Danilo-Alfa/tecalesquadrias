@@ -18,7 +18,6 @@ const CATEGORIAS = [
   { id: "janelas", label: "Janelas" },
   { id: "portas", label: "Portas" },
   { id: "portoes-grades", label: "Portões e grades" },
-  { id: "fachadas-vidros", label: "Fachadas e vidros" },
 ] as const;
 
 export function StoreFooter() {

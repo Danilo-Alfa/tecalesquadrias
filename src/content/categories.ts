@@ -1,10 +1,9 @@
-import { DoorOpen, Fence, Grid2x2, PanelsTopLeft, type LucideIcon } from "lucide-react";
+import { DoorOpen, Fence, Grid2x2, type LucideIcon } from "lucide-react";
 
 export type CategoryId =
   | "janelas"
   | "portas"
-  | "portoes-grades"
-  | "fachadas-vidros";
+  | "portoes-grades";
 
 export interface Category {
   id: CategoryId;
@@ -31,11 +30,5 @@ export const CATEGORIES: readonly Category[] = [
     label: "Portões e grades",
     waLabel: "portões e grades de alumínio",
     icon: Fence,
-  },
-  {
-    id: "fachadas-vidros",
-    label: "Fachadas e vidros",
-    waLabel: "fachadas e vidros temperados",
-    icon: PanelsTopLeft,
   },
 ] as const;

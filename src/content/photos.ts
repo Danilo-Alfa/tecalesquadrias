@@ -14,7 +14,7 @@
  *   produto enquanto a foto real nao chega. Aparece nos creditos do rodape.
  *
  * TODO(cliente): substituir as entradas com `credit` por fotos reais. Faltam
- * janela de correr, maxim-ar, porta pivotante, portao, fachada, box/vidros
+ * janela de correr, maxim-ar, porta pivotante, portao
  * e grade. As fotos de fabrica recebidas em 2026-08-31 sao PORTAS de correr
  * (confirmado pelo cliente), nao janelas.
  */
@@ -48,8 +48,6 @@ export type PhotoKey =
   | "porta-banner"
   | "porta-pivotante"
   | "portao"
-  | "fachada"
-  | "vidros"
   | "grade"
   | "hero-fachada"
   | "fabrica-detalhe";
@@ -114,26 +112,6 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     blurDataURL:
       "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQAAsAA4BaJagCdGuAAsjUCsxAAP7He4EzUFDVU7fWS5ER1i13iIwIwRjoeN/Ma8YIRvjGEl0b7obbjId6PyAkLEGjVBiJEzrKrGP+eAAAAA==",
     credit: { author: "Douglas Rafael Fonseca", url: "https://www.pexels.com/photo/brown-brick-house-and-concrete-driveway-under-blue-sky-12870089/" },
-  },
-  "fachada": {
-    base: "/images/fachada",
-    widths: [400, 800, 1200],
-    width: 1200,
-    height: 675,
-    alt: "Edifício com sacadas envidraçadas em esquadrias de alumínio",
-    blurDataURL:
-      "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoQAAkAA4BaJYwCdACt8GQAAM3LqDOb2w6MMjV52jnkq/H2ktYFTiV+k83KsHqWHXGqmxnrNXJDM+tj7xclCpIZtsBgAA==",
-    credit: { author: "Phát Trương", url: "https://www.pexels.com/photo/modern-glass-apartment-building-exterior-38527765/" },
-  },
-  "vidros": {
-    base: "/images/vidros",
-    widths: [400, 800, 1200],
-    width: 1200,
-    height: 800,
-    alt: "Sacadas com guarda-corpo de vidro e janelas de perfil escuro",
-    blurDataURL:
-      "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAsAA4BaJQAB8hE9BO732GgA/sgI/TjRdByerdLf7AnL7ev7vLnwgEgr63FQtmYPqRnE3avrurcZyFQuKD2FsJ5MnC7zfF3XdcP9Zgyinb7+uAAAAA==",
-    credit: { author: "SHOX ART", url: "https://www.pexels.com/photo/modern-apartment-building-with-glass-balconies-29174533/" },
   },
   "grade": {
     base: "/images/grade",
