@@ -88,9 +88,15 @@ export function CalcularButton({ product }: CalcularButtonProps) {
       <button
         type="button"
         onClick={abrir}
-        className="mt-3 inline-flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-navy-900 text-[0.8125rem] font-semibold text-white transition-all hover:bg-navy-800 active:scale-[0.98]"
+        /*
+         * min-h no lugar de h fixo: no card de 2 colunas do mobile o rotulo
+         * quebra em duas linhas e transbordava a altura. O px-3 garante que
+         * o icone nao encoste na borda arredondada.
+         */
+        className="mt-3 inline-flex min-h-10 w-full items-center justify-center gap-1.5 text-balance rounded-lg bg-navy-900 px-2.5 py-2 text-center text-xs font-semibold leading-snug text-white transition-all hover:bg-navy-800 active:scale-[0.98] sm:gap-2 sm:px-3 sm:text-[0.8125rem]"
       >
-        <WhatsAppIcon className="size-4 text-verde-500" />
+        {/* Abaixo de 360px o rotulo so cabe em duas linhas sem o icone */}
+        <WhatsAppIcon className="size-4 text-verde-500 max-[359px]:hidden" />
         Calcular sob medida
       </button>
 
