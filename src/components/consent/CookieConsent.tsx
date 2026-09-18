@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { getStoredConsent, storeConsent, type ConsentChoice } from "@/lib/consent";
-import { loadTrackingScripts } from "@/lib/tracking";
+import { loadTrackingScripts, updateConsent } from "@/lib/tracking";
 
 /*
  * Banner de consentimento (LGPD): cookies de medicao (GA4/Meta Pixel)
@@ -18,6 +18,10 @@ export function CookieConsent() {
       loadTrackingScripts();
       return;
     }
+    if (stored === "essenciais") {
+      // reafirma a recusa nesta carga, para as tags do GTM
+      updateConsent(false);
+    }
     if (stored === null) {
       // atraso curto: nao compete com o paint inicial do hero
       const timer = window.setTimeout(() => setVisible(true), 600);
@@ -28,6 +32,7 @@ export function CookieConsent() {
   const decide = (choice: ConsentChoice) => {
     storeConsent(choice);
     setVisible(false);
+    updateConsent(choice === "aceito");
     if (choice === "aceito") {
       loadTrackingScripts();
     }

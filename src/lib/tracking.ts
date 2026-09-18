@@ -1,3 +1,5 @@
+import { consentState } from "@/lib/consent";
+
 /*
  * IDs de midia paga e analytics.
  * TODO(cliente): preencher Google Ads e Meta Pixel quando as contas
@@ -17,6 +19,38 @@ export const TRACKING = {
   metaPixelId: "",
 } as const;
 
+/*
+ * Shim do gtag, unico para todo o site. O snippet oficial do Google
+ * empilha o objeto `arguments` — nao um array — e o gtag.js conta com
+ * isso ao varrer a fila; por isso a funcao e uma declaration, ja que
+ * arrow nao tem `arguments`.
+ *
+ * Reaproveita o gtag que o script de consentimento do layout ja definiu,
+ * para os dois lados escreverem na mesma fila.
+ */
+export function gtagShim(): (...args: unknown[]) => void {
+  window.dataLayer = window.dataLayer ?? [];
+  if (window.gtag) return window.gtag;
+
+  function gtag(): void {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer?.push(arguments as unknown as Record<string, unknown>);
+  }
+  const enviar = gtag as (...args: unknown[]) => void;
+  window.gtag = enviar;
+  return enviar;
+}
+
+/*
+ * Consent Mode v2: o layout ja declarou tudo negado antes do GTM subir.
+ * Aqui so avisamos a decisao do visitante — vale tanto para as tags do
+ * container quanto para o GA4 carregado abaixo.
+ */
+export function updateConsent(granted: boolean): void {
+  if (typeof window === "undefined") return;
+  gtagShim()("consent", "update", consentState(granted));
+}
+
 let loaded = false;
 
 export function loadTrackingScripts(): void {
@@ -31,19 +65,7 @@ export function loadTrackingScripts(): void {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${firstId}`;
     document.head.appendChild(script);
 
-    window.dataLayer = window.dataLayer ?? [];
-    /*
-     * O snippet oficial do Google empilha o objeto `arguments`, nao um
-     * array — e o gtag.js conta com isso ao varrer a fila. Por isso a
-     * funcao e uma declaration (arrow nao tem `arguments`) e o push vai
-     * com cast: o dataLayer e tipado como lista de objetos.
-     */
-    function gtag(): void {
-      // eslint-disable-next-line prefer-rest-params
-      window.dataLayer?.push(arguments as unknown as Record<string, unknown>);
-    }
-    const enviar = gtag as (...args: unknown[]) => void;
-    window.gtag = enviar;
+    const enviar = gtagShim();
     enviar("js", new Date());
     if (ga4Id) enviar("config", ga4Id);
     if (googleAdsId) enviar("config", googleAdsId);

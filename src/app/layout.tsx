@@ -5,6 +5,7 @@ import Script from "next/script";
 import { ClickTracker } from "@/components/analytics/ClickTracker";
 import { CookieConsent } from "@/components/consent/CookieConsent";
 import { MotionProvider } from "@/components/motion/MotionProvider";
+import { CONSENT_KEY, consentState } from "@/lib/consent";
 import { SITE } from "@/lib/site";
 import { TRACKING } from "@/lib/tracking";
 
@@ -85,6 +86,29 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${manrope.variable} antialiased`}
     >
+      {/*
+        Consent Mode v2, antes do GTM: o container carrega para todos os
+        visitantes, entao sem este default qualquer tag criada la dentro
+        dispararia ignorando o banner. Os sinais nascem negados e so viram
+        "granted" no aceite — inclusive nesta mesma carga, se a decisao ja
+        estiver salva de uma visita anterior.
+      */}
+      <Script
+        id="consent-default"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+window.gtag=gtag;
+gtag('consent','default',${JSON.stringify({
+            ...consentState(false),
+            wait_for_update: 500,
+          })});
+try{if(localStorage.getItem('${CONSENT_KEY}')==='aceito'){
+gtag('consent','update',${JSON.stringify(consentState(true))});}}catch(e){}`,
+        }}
+      />
+
       {/* GTM carrega para todos os visitantes, sem gate de consentimento */}
       {TRACKING.gtmId && (
         <Script
