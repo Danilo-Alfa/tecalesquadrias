@@ -70,7 +70,7 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
   /* Foto de obra do cliente: a tela integrada aparece na folha da esquerda. */
   "janelas-integradas": {
     base: "/images/janelas-integradas",
-    widths: [400, 700],
+    widths: [400, 800, 900],
     width: 900,
     height: 900,
     alt: "Duas janelas maxim-ar de alumínio preto abertas, com tela integrada, sobre parede de mármore claro",
@@ -106,7 +106,7 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
   /* Ambiente usado so no banner de Janelas: fundo branco nao funciona la. */
   "janela-banner": {
     base: "/images/janela-banner",
-    widths: [400, 800, 900],
+    widths: [400, 800, 1200],
     width: 1200,
     height: 801,
     alt: "Sala clara com janela de correr de perfil escuro na parede e janela em fita acima",
@@ -117,7 +117,7 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
   /* Foto de obra do cliente: mostra o maxim-ar aberto. */
   "janela-maxim-ar": {
     base: "/images/janela-maxim-ar",
-    widths: [400, 800, 1200],
+    widths: [400, 700],
     width: 700,
     height: 700,
     alt: "Janela maxim-ar de alumínio preto aberta, em banheiro de porcelanato claro",

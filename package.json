@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "imagens": "node scripts/otimizar-imagens.mjs"
+    "imagens": "node scripts/otimizar-imagens.mjs",
+    "checar-imagens": "node scripts/checar-imagens.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
