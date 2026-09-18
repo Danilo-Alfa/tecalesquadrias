@@ -24,7 +24,7 @@ export function Footer() {
             <Logo idPrefix="logo-footer" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-prata-400">
               Esquadrias de alumínio sob medida com produção própria. Janelas,
-              portas, portões e grades para residências, comércios e
+              portas e grades para residências, comércios e
               construtoras em {SITE.region}.
             </p>
             {(SITE.social.instagram || SITE.social.facebook) && (

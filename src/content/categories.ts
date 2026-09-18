@@ -3,7 +3,7 @@ import { DoorOpen, Fence, Grid2x2, type LucideIcon } from "lucide-react";
 export type CategoryId =
   | "janelas"
   | "portas"
-  | "portoes-grades";
+  | "grades";
 
 export interface Category {
   id: CategoryId;
@@ -26,9 +26,9 @@ export const CATEGORIES: readonly Category[] = [
     icon: DoorOpen,
   },
   {
-    id: "portoes-grades",
-    label: "Portões e grades",
-    waLabel: "portões e grades de alumínio",
+    id: "grades",
+    label: "Grades",
+    waLabel: "grades de alumínio",
     icon: Fence,
   },
 ] as const;

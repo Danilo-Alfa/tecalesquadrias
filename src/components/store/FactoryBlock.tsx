@@ -28,8 +28,8 @@ export function FactoryBlock() {
               qualidade — sem intermediários e sem revenda.
             </p>
             <p>
-              É por isso que conseguimos entregar janelas, portas, portões e
-              grades 100% sob medida, com prazo definido no orçamento e
+              É por isso que conseguimos entregar janelas, portas e grades
+              100% sob medida, com prazo definido no orçamento e
               instalação feita por equipe própria. Qualidade que reflete em
               cada detalhe.
             </p>

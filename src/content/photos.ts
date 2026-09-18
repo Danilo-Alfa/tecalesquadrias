@@ -44,12 +44,12 @@ export interface Photo {
 export type PhotoKey =
   | "janela-de-correr"
   | "janela-banner"
+  | "janelas-integradas"
   | "janela-maxim-ar"
   | "porta-de-correr"
   | "porta-de-correr-detalhes"
   | "porta-banner"
   | "porta-pivotante"
-  | "portao"
   | "grade"
   | "fabrica-detalhe";
 
@@ -68,6 +68,17 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     alt: "Janela de correr de duas folhas em alumínio branco, vista de frente, com fecho lateral",
     blurDataURL:
       "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQABAAAoBCJaQAAudM1D50AAD++7GX1ul+U+C/uSliCbuGJuwofPQwVXmdkWlgAAA=",
+    propria: true,
+  },
+  /* Foto de obra do cliente: a tela integrada aparece na folha da esquerda. */
+  "janelas-integradas": {
+    base: "/images/janelas-integradas",
+    widths: [400, 800, 1200],
+    width: 900,
+    height: 900,
+    alt: "Duas janelas maxim-ar de alumínio preto abertas, com tela integrada, sobre parede de mármore claro",
+    blurDataURL:
+      "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQAgCdASoQABAAAoBCJQBOj+ADBxDfVEuAAP7zVZFOLgGemEGUHPxeTu49vR1l8M/Eod+3vEVfEJ9MYAlkW7tse4O7d/qfTWZmxuJ2NLyqnAuFQOvQKFbt87Tu2hNvx1aqBTRLnjm2HGoo6XCXE0yBmKVaXhIIAAA=",
     propria: true,
   },
   /* Ambiente usado so no banner de Janelas: fundo branco nao funciona la. */
@@ -136,16 +147,6 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
     blurDataURL:
       "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAsAA4BaJZQCdADG1F1Z3QAA/uz0lJEf4kZ3+4kvzCUUAxGtO6WHjHcPYi044W9VACs2lMUJE3OyYesQGnxAAAA=",
     credit: { author: "Max Vakhtbovych", url: "https://www.pexels.com/photo/modern-house-entrance-7587881/" },
-  },
-  "portao": {
-    base: "/images/portao",
-    widths: [400, 800, 1200],
-    width: 1200,
-    height: 801,
-    alt: "Portão de garagem em lâminas horizontais ao lado de portão social e muro de tijolo",
-    blurDataURL:
-      "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQAAsAA4BaJagCdGuAAsjUCsxAAP7He4EzUFDVU7fWS5ER1i13iIwIwRjoeN/Ma8YIRvjGEl0b7obbjId6PyAkLEGjVBiJEzrKrGP+eAAAAA==",
-    credit: { author: "Douglas Rafael Fonseca", url: "https://www.pexels.com/photo/brown-brick-house-and-concrete-driveway-under-blue-sky-12870089/" },
   },
   "grade": {
     base: "/images/grade",

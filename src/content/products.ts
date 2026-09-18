@@ -21,7 +21,6 @@ export interface Product {
   placeholder:
     | "janela"
     | "porta"
-    | "portao"
     | "projeto"
     | "grade";
   medidas: ProductMeasures;
@@ -36,7 +35,7 @@ export const PRODUCTS: readonly Product[] = [
     id: "janela-de-correr",
     photo: "janela-de-correr",
     title: "Janela de correr",
-    description: "2, 3 ou 4 folhas, com vidro liso, fumê ou temperado.",
+    description: "2, 3 ou 4 folhas, com opção integrada.",
     waLabel: "janela de correr sob medida",
     placeholder: "janela",
     medidas: { larguraMin: 0.8, larguraMax: 3, alturaMin: 0.8, alturaMax: 1.6 },
@@ -50,6 +49,16 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "janela maxim-ar sob medida",
     placeholder: "janela",
     medidas: { larguraMin: 0.4, larguraMax: 1.5, alturaMin: 0.4, alturaMax: 1.2 },
+    category: "janelas",
+  },
+  {
+    id: "janelas-integradas",
+    photo: "janelas-integradas",
+    title: "Janelas integradas",
+    description: "Manuais, automáticas e de correr.",
+    waLabel: "janela integrada sob medida",
+    placeholder: "janela",
+    medidas: { larguraMin: 0.8, larguraMax: 3, alturaMin: 0.8, alturaMax: 1.6 },
     category: "janelas",
   },
   {
@@ -73,14 +82,13 @@ export const PRODUCTS: readonly Product[] = [
     category: "portas",
   },
   {
-    id: "portao",
-    photo: "portao",
-    title: "Portão de alumínio",
-    description: "Social e garagem: leve, seguro e sem ferrugem.",
-    waLabel: "portão de alumínio sob medida",
-    placeholder: "portao",
-    medidas: { larguraMin: 2, larguraMax: 6, alturaMin: 1.5, alturaMax: 2.5 },
-    category: "portoes-grades",
+    id: "portas-integradas",
+    title: "Portas integradas",
+    description: "Manuais, automáticas e de 2 folhas.",
+    waLabel: "porta integrada sob medida",
+    placeholder: "porta",
+    medidas: { larguraMin: 1.5, larguraMax: 4, alturaMin: 2, alturaMax: 2.4 },
+    category: "portas",
   },
   {
     id: "grade",
@@ -90,7 +98,7 @@ export const PRODUCTS: readonly Product[] = [
     waLabel: "grade de alumínio sob medida",
     placeholder: "grade",
     medidas: { larguraMin: 0.4, larguraMax: 3, alturaMin: 0.4, alturaMax: 2.2 },
-    category: "portoes-grades",
+    category: "grades",
   },
 ] as const;
 

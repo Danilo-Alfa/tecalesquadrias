@@ -49,7 +49,7 @@ export function SearchWhats() {
           type="text"
           value={query}
           onChange={(event) => handleChange(event.target.value)}
-          placeholder="Digite o que você precisa: janela, porta, portão…"
+          placeholder="Digite o que você precisa: janela, porta, grade…"
           aria-label="Buscar produtos"
           className="h-9 flex-1 bg-transparent text-sm text-grafite-900 placeholder:text-grafite-600/70 focus:outline-none"
         />

@@ -17,7 +17,7 @@ const INSTITUCIONAL = [
 const CATEGORIAS = [
   { id: "janelas", label: "Janelas" },
   { id: "portas", label: "Portas" },
-  { id: "portoes-grades", label: "Portões e grades" },
+  { id: "grades", label: "Grades" },
 ] as const;
 
 export function StoreFooter() {
@@ -29,8 +29,8 @@ export function StoreFooter() {
             <Logo idPrefix="logo-footer" tone="light" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-grafite-600">
               Esquadrias de alumínio sob medida com produção própria em{" "}
-              {SITE.address.city}. Janelas, portas, portões e grades para
-              residências, comércios e construtoras.
+              {SITE.address.city}. Janelas, portas e grades para residências,
+              comércios e construtoras.
             </p>
             {(SITE.social.instagram || SITE.social.facebook) && (
               <div className="mt-5 flex items-center gap-3">

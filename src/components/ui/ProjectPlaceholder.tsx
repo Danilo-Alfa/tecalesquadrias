@@ -1,7 +1,6 @@
 export type PlaceholderVariant =
   | "janela"
   | "porta"
-  | "portao"
   | "projeto"
   | "grade";
 
@@ -86,26 +85,6 @@ function Artwork({ variant, frame, glass }: ArtworkProps) {
           <circle cx="185" cy="160" r="4" fill={frame} />
           <path d="M156 110l26-40" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.55" />
           <path d="M216 110l26-40" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.55" />
-        </g>
-      );
-    case "portao":
-      return (
-        <g>
-          {[70, 106, 142, 178, 214].map((y) => (
-            <rect
-              key={y}
-              x="80"
-              y={y}
-              width="240"
-              height="22"
-              rx="4"
-              fill={glass}
-              stroke={frame}
-              strokeWidth="2.5"
-            />
-          ))}
-          <path d="M110 90L150 62" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.5" />
-          <path d="M240 200l40-28" stroke="#5B8CFF" strokeWidth="2.5" opacity="0.4" />
         </g>
       );
     case "grade":

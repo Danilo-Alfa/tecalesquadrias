@@ -6,7 +6,7 @@ export const SITE = {
   name: "TEC ALUMI",
   tagline: "Qualidade que Reflete",
   description:
-    "Esquadrias de alumínio sob medida com produção própria em São Paulo: janelas, portas, portões e grades. Orçamento rápido pelo WhatsApp.",
+    "Esquadrias de alumínio sob medida com produção própria em São Paulo: janelas, portas e grades. Orçamento rápido pelo WhatsApp.",
 
   // TODO(cliente): dominio final (usado em canonical, Open Graph e sitemap)
   url: "https://www.tecalumi.com.br",
