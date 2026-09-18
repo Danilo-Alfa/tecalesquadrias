@@ -1,6 +1,7 @@
 /*
  * IDs de midia paga e analytics.
- * TODO(cliente): preencher quando as contas estiverem criadas.
+ * TODO(cliente): preencher Google Ads e Meta Pixel quando as contas
+ * estiverem criadas.
  * GA4/Ads/Pixel SO carregam apos o consentimento de cookies (LGPD)
  * e quando o respectivo ID estiver preenchido. O GTM e a excecao:
  * carrega para todos os visitantes, direto no layout (decisao do cliente).
@@ -9,7 +10,7 @@ export const TRACKING = {
   // Google Tag Manager, formato GTM-XXXXXXX (carregado no layout, sem gate)
   gtmId: "GTM-T8F6KS2Q",
   // GA4, formato G-XXXXXXXXXX
-  ga4Id: "",
+  ga4Id: "G-S1XR43ZK75",
   // Google Ads, formato AW-XXXXXXXXX
   googleAdsId: "",
   // Meta Pixel, somente numeros
@@ -31,13 +32,21 @@ export function loadTrackingScripts(): void {
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer ?? [];
-    const gtag = (...args: unknown[]) => {
-      window.dataLayer?.push(args as unknown as Record<string, unknown>);
-    };
-    window.gtag = gtag;
-    gtag("js", new Date());
-    if (ga4Id) gtag("config", ga4Id);
-    if (googleAdsId) gtag("config", googleAdsId);
+    /*
+     * O snippet oficial do Google empilha o objeto `arguments`, nao um
+     * array — e o gtag.js conta com isso ao varrer a fila. Por isso a
+     * funcao e uma declaration (arrow nao tem `arguments`) e o push vai
+     * com cast: o dataLayer e tipado como lista de objetos.
+     */
+    function gtag(): void {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer?.push(arguments as unknown as Record<string, unknown>);
+    }
+    const enviar = gtag as (...args: unknown[]) => void;
+    window.gtag = enviar;
+    enviar("js", new Date());
+    if (ga4Id) enviar("config", ga4Id);
+    if (googleAdsId) enviar("config", googleAdsId);
   }
 
   if (metaPixelId) {
