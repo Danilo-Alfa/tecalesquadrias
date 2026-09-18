@@ -54,20 +54,15 @@ export type PhotoKey =
   | "fabrica-detalhe";
 
 export const PHOTOS: Record<PhotoKey, Photo> = {
-  /*
-   * Foto de catalogo, recortada em fundo branco. Foi centralizada num
-   * quadrado com margem antes de gerar os degraus: o card do produto e
-   * `aspect-square` com object-cover e, na proporcao original (4:3),
-   * o corte comeria as laterais do perfil.
-   */
+  /* Foto de obra do cliente, recortada em quadrado para o card. */
   "janela-de-correr": {
     base: "/images/janela-de-correr",
     widths: [400, 800, 1200],
-    width: 1200,
-    height: 1200,
-    alt: "Janela de correr de duas folhas em alumínio branco, vista de frente, com fecho lateral",
+    width: 1120,
+    height: 1120,
+    alt: "Janela de correr de duas folhas em alumínio branco com puxadores escuros, em banheiro de porcelanato cinza",
     blurDataURL:
-      "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQABAAAoBCJaQAAudM1D50AAD++7GX1ul+U+C/uSliCbuGJuwofPQwVXmdkWlgAAA=",
+      "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADwAgCdASoQABAAAoBCJZACdGaA2wF2kgpdOA2bxG8t4AD+TSnEJgBaA1wbvTAIB1JzsBk2Rbj6lbUHmfpKKyQAhbJbZmwwTTqpn2vRLf8aXa3JsunBPhrky+3JfsYLhDDjoDmGngWMdVTlbmePeMzEAAA=",
     propria: true,
   },
   /* Foto de obra do cliente: a tela integrada aparece na folha da esquerda. */
@@ -92,15 +87,16 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
       "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAsAA4BaJaQAAu16WnfxXWAA/usqIpcsefOaEUt8Vo53fKSVAPHHEOKkIvWGX4Cbx4G4q2HUej8gAAA=",
     credit: { author: "Max Vakhtbovych", url: "https://www.pexels.com/photo/empty-room-of-modern-apartment-7031599/" },
   },
+  /* Foto de obra do cliente: mostra o maxim-ar aberto. */
   "janela-maxim-ar": {
     base: "/images/janela-maxim-ar",
     widths: [400, 800, 1200],
-    width: 1200,
-    height: 1200,
-    alt: "Banheiro claro com duas janelas altas e estreitas de ventilação",
+    width: 700,
+    height: 700,
+    alt: "Janela maxim-ar de alumínio preto aberta, em banheiro de porcelanato claro",
     blurDataURL:
-      "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQAgCdASoQABAAA4BaJaQAA1WFgMG1SivIuYAA/udXlF6G5L8PTzvp+9lSkyUNjQf2eesAMZ3+GnWcVMjUzAiHc1CdFmUwK60qEBg4AAA=",
-    credit: { author: "Pușcaș Adryan", url: "https://www.pexels.com/photo/modern-minimalist-bathroom-with-white-marble-28457986/" },
+      "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAQAgCdASoQABAAAoBCJaQAAxaTq8Sl/Am2AP7sW6s/w7/gh9ektw+WFgd1PbWqnH7+l/u3Rb7hqqNIHmIn3aWIk9CFd/zp7aaD/7YPXoWJ1Qt+71haF5v8MSEDAh3i8LbH1BwA",
+    propria: true,
   },
   "porta-de-correr": {
     base: "/images/porta-de-correr",
