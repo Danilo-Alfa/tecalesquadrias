@@ -8,6 +8,7 @@ import { ProductGrid } from "@/components/store/ProductGrid";
 import { StoreFooter } from "@/components/store/StoreFooter";
 import { StoreHeader } from "@/components/store/StoreHeader";
 import { StoreHero } from "@/components/store/StoreHero";
+import { WorkGallery } from "@/components/store/WorkGallery";
 import { Topbar } from "@/components/store/Topbar";
 import { WhatsBar } from "@/components/store/WhatsBar";
 import { localBusinessJsonLd } from "@/lib/seo";
@@ -31,6 +32,7 @@ export default function Home() {
         <CategoryTiles />
         <CtaBanner />
         <FactoryBlock />
+        <WorkGallery />
         <ProductDetails />
       </main>
       <StoreFooter />

@@ -49,7 +49,21 @@ async function main() {
       .replace(/(^-|-$)/g, "");
     const source = sharp(path.join(INPUT_DIR, file)).rotate();
 
-    for (const width of WIDTHS) {
+    /*
+     * Degrau maior que o original nao e gerado: `withoutEnlargement` devolve
+     * o arquivo no tamanho original, e o srcset acabaria anunciando uma
+     * largura que a imagem nao tem. Quando a foto nao alcanca o maior
+     * degrau, entra a largura real dela no lugar.
+     */
+    const { width: originalWidth } = await source.metadata();
+    const widths = [
+      ...new Set([
+        ...WIDTHS.filter((width) => width < originalWidth),
+        Math.min(originalWidth, Math.max(...WIDTHS)),
+      ]),
+    ];
+
+    for (const width of widths) {
       const resized = source.clone().resize({ width, withoutEnlargement: true });
       await resized
         .webp({ quality: 78 })
@@ -58,7 +72,7 @@ async function main() {
         .avif({ quality: 55 })
         .toFile(path.join(OUTPUT_DIR, `${base}-${width}.avif`));
     }
-    console.log(`ok: ${file} -> ${base}-{${WIDTHS.join(",")}}.{webp,avif}`);
+    console.log(`ok: ${file} -> ${base}-{${widths.join(",")}}.{webp,avif}`);
   }
 
   console.log(`\n${images.length} imagem(ns) otimizada(s) em ${OUTPUT_DIR}/`);

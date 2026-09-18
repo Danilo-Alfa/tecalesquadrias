@@ -45,6 +45,8 @@ export type PhotoKey =
   | "janela-de-correr"
   | "janela-banner"
   | "janelas-integradas"
+  | "obra-maxim-ar-porcelanato"
+  | "obra-maxim-ar-pastilhas"
   | "janela-maxim-ar"
   | "porta-de-correr"
   | "porta-de-correr-detalhes"
@@ -57,7 +59,7 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
   /* Foto de obra do cliente, recortada em quadrado para o card. */
   "janela-de-correr": {
     base: "/images/janela-de-correr",
-    widths: [400, 800, 1200],
+    widths: [400, 800, 1120],
     width: 1120,
     height: 1120,
     alt: "Janela de correr de duas folhas em alumínio branco com puxadores escuros, em banheiro de porcelanato cinza",
@@ -68,7 +70,7 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
   /* Foto de obra do cliente: a tela integrada aparece na folha da esquerda. */
   "janelas-integradas": {
     base: "/images/janelas-integradas",
-    widths: [400, 800, 1200],
+    widths: [400, 700],
     width: 900,
     height: 900,
     alt: "Duas janelas maxim-ar de alumínio preto abertas, com tela integrada, sobre parede de mármore claro",
@@ -76,10 +78,35 @@ export const PHOTOS: Record<PhotoKey, Photo> = {
       "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQAgCdASoQABAAAoBCJQBOj+ADBxDfVEuAAP7zVZFOLgGemEGUHPxeTu49vR1l8M/Eod+3vEVfEJ9MYAlkW7tse4O7d/qfTWZmxuJ2NLyqnAuFQOvQKFbt87Tu2hNvx1aqBTRLnjm2HGoo6XCXE0yBmKVaXhIIAAA=",
     propria: true,
   },
+  /*
+   * Galeria de obras. Sao fotos de celular do cliente, entao os degraus
+   * param na largura real de cada uma — anunciar 1200w numa imagem de 510
+   * faria o browser baixar o arquivo achando que e maior do que e.
+   */
+  "obra-maxim-ar-porcelanato": {
+    base: "/images/obra-maxim-ar-porcelanato",
+    widths: [400, 656],
+    width: 656,
+    height: 875,
+    alt: "Janela maxim-ar de alumínio preto instalada em parede de porcelanato bege",
+    blurDataURL:
+      "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABwBACdASoQABUAPrVInkmnJCKhMAgA4BaJaQDBB79sf4DXQTpemSU6mpO18AD+6QOUC/DYfS42bzkLk2MJbbpxpejW3x0s7smh5Rq6BNFw4jZQUgawQbYNn9oeadTfu/oQ7u0cqRRdcxTJNk5GvWTrRgAAAA==",
+    propria: true,
+  },
+  "obra-maxim-ar-pastilhas": {
+    base: "/images/obra-maxim-ar-pastilhas",
+    widths: [400, 510],
+    width: 510,
+    height: 680,
+    alt: "Janela maxim-ar de alumínio preto aberta, em parede revestida de pastilhas coloridas",
+    blurDataURL:
+      "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASoQABYAPrVInkmnJCKhMAgA4BaJaQAAYf/o/R0rQGWfTONx3JeYAAD+8VNp+K5aaCTzhHAVrrjdWxyTjwqWFY0P504CETmL63vlZdTjJS9A0/ioZlqRtmoSbwEVp7cwSO1ndCs3nt/03ftP/+gzb79/YZahr1h/qgd1/8B1DE1X37B12sG55PkGyKJDAAAA",
+    propria: true,
+  },
   /* Ambiente usado so no banner de Janelas: fundo branco nao funciona la. */
   "janela-banner": {
     base: "/images/janela-banner",
-    widths: [400, 800, 1200],
+    widths: [400, 800, 900],
     width: 1200,
     height: 801,
     alt: "Sala clara com janela de correr de perfil escuro na parede e janela em fita acima",

@@ -1,28 +1,27 @@
+import type { PhotoKey } from "@/content/photos";
+
 export interface GalleryItem {
   id: string;
   caption: string;
-  location: string;
-  placeholder: "janela" | "porta" | "projeto";
+  photo: PhotoKey;
 }
 
-// TODO(cliente): substituir por fotos reais de obras com legenda e cidade
+/*
+ * Obras entregues, com foto real da fabrica.
+ *
+ * TODO(cliente): confirmar a cidade de cada obra — a legenda ganha o local
+ * assim que a informacao chegar. Enquanto nao chega, nao inventamos: local
+ * errado numa galeria de obras e pior do que local nenhum.
+ */
 export const GALLERY: readonly GalleryItem[] = [
   {
-    id: "janelas-residenciais",
-    caption: "Janelas de correr em residência",
-    location: "São Paulo, SP",
-    placeholder: "janela",
+    id: "maxim-ar-porcelanato",
+    caption: "Maxim-ar em alumínio preto, banheiro em porcelanato",
+    photo: "obra-maxim-ar-porcelanato",
   },
   {
-    id: "porta-de-correr",
-    caption: "Porta de correr integrando área gourmet",
-    location: "São Paulo, SP",
-    placeholder: "porta",
-  },
-  {
-    id: "projeto-sob-medida",
-    caption: "Projeto sob medida do desenho à instalação",
-    location: "São Paulo, SP",
-    placeholder: "projeto",
+    id: "maxim-ar-pastilhas",
+    caption: "Maxim-ar em alumínio preto, parede de pastilhas",
+    photo: "obra-maxim-ar-pastilhas",
   },
 ] as const;
