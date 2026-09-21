@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 
+import { TRACKING } from "@/lib/tracking";
+
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[];
@@ -35,9 +37,12 @@ function readStoredUtms(): Record<string, string> {
 /*
  * Rastreio de conversao para trafego pago:
  * - captura UTMs na chegada e persiste na sessao;
- * - todo clique em link com data-wa dispara whatsapp_click no GA4/Ads,
- *   Contact no Meta Pixel e um push no dataLayer (GTM).
- * Os scripts de GA4/Pixel sao adicionados quando o cliente enviar os IDs.
+ * - todo clique em link com data-wa dispara whatsapp_click no GA4,
+ *   a conversao "Orcamento via WhatsApp" no Google Ads, Contact no Meta
+ *   Pixel e um push no dataLayer (GTM).
+ *
+ * Nada disso chega ao Google antes do aceite de cookies: sem consentimento
+ * o gtag nem configura as contas, entao os eventos morrem na fila.
  */
 export function ClickTracker() {
   useEffect(() => {
@@ -64,6 +69,17 @@ export function ClickTracker() {
 
       window.dataLayer?.push({ event: "whatsapp_click", source, ...utms });
       window.gtag?.("event", "whatsapp_click", { source, ...utms });
+
+      // Conversao do Google Ads: o clique e o lead, nao o carregamento
+      const { googleAdsId, googleAdsWhatsappConversion: conversao } = TRACKING;
+      if (googleAdsId && conversao.sendTo) {
+        window.gtag?.("event", "conversion", {
+          send_to: conversao.sendTo,
+          value: conversao.value,
+          currency: conversao.currency,
+        });
+      }
+
       window.fbq?.("track", "Contact", { source });
     };
 

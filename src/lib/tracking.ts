@@ -14,7 +14,18 @@ export const TRACKING = {
   // GA4, formato G-XXXXXXXXXX
   ga4Id: "G-S1XR43ZK75",
   // Google Ads, formato AW-XXXXXXXXX
-  googleAdsId: "",
+  googleAdsId: "AW-18460513766",
+  /*
+   * Acao de conversao "Orcamento via WhatsApp" do Google Ads.
+   * O snippet que o Ads entrega e o de "pagina de conversao": dispara no
+   * carregamento e contaria uma conversao por pageview. Aqui a conversao
+   * e o clique que leva ao WhatsApp, entao o disparo vive no ClickTracker.
+   */
+  googleAdsWhatsappConversion: {
+    sendTo: "AW-18460513766/aOZlCPLXvvwcEOar1OJE",
+    value: 1.0,
+    currency: "BRL",
+  },
   // Meta Pixel, somente numeros
   metaPixelId: "",
 } as const;
