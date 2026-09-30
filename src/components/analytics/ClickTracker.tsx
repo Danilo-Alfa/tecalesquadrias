@@ -41,8 +41,8 @@ function readStoredUtms(): Record<string, string> {
  *   a conversao "Orcamento via WhatsApp" no Google Ads, Contact no Meta
  *   Pixel e um push no dataLayer (GTM).
  *
- * Nada disso chega ao Google antes do aceite de cookies: sem consentimento
- * o gtag nem configura as contas, entao os eventos morrem na fila.
+ * Sem aceite de cookies, o GA4 nem e configurado; a conversao do Ads
+ * segue pelo Consent Mode v2, sem cookies (ping anonimo para modelagem).
  */
 export function ClickTracker() {
   useEffect(() => {

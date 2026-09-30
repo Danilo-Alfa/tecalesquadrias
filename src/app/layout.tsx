@@ -109,6 +109,29 @@ gtag('consent','update',${JSON.stringify(consentState(true))});}}catch(e){}`,
         }}
       />
 
+      {/*
+        Tag global do Google Ads, em todas as paginas e para todos os
+        visitantes (pedido do cliente). O consentimento continua valendo:
+        sem aceite o gtag.js fica no modo sem cookies do Consent Mode.
+        A conversao "Orcamento via WhatsApp" dispara no clique, no
+        ClickTracker — nunca no carregamento da pagina.
+      */}
+      {TRACKING.googleAdsId && (
+        <>
+          <Script
+            id="gtag-js"
+            src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING.googleAdsId}`}
+          />
+          <Script
+            id="gtag-ads"
+            dangerouslySetInnerHTML={{
+              __html: `gtag('js', new Date());
+gtag('config', '${TRACKING.googleAdsId}');`,
+            }}
+          />
+        </>
+      )}
+
       {/* GTM carrega para todos os visitantes, sem gate de consentimento */}
       {TRACKING.gtmId && (
         <Script
