@@ -2,11 +2,12 @@ import { consentState } from "@/lib/consent";
 
 /*
  * IDs de midia paga e analytics.
- * TODO(cliente): preencher Google Ads e Meta Pixel quando as contas
- * estiverem criadas.
- * GA4/Ads/Pixel SO carregam apos o consentimento de cookies (LGPD)
- * e quando o respectivo ID estiver preenchido. O GTM e a excecao:
- * carrega para todos os visitantes, direto no layout (decisao do cliente).
+ * TODO(cliente): preencher o Meta Pixel quando a conta
+ * estiver criada.
+ * GA4/Pixel SO carregam apos o consentimento de cookies (LGPD)
+ * e quando o respectivo ID estiver preenchido. GTM e a tag global do
+ * Google Ads sao a excecao: carregam para todos os visitantes, direto no
+ * layout (decisao do cliente), respeitando o Consent Mode v2.
  */
 export const TRACKING = {
   // Google Tag Manager, formato GTM-XXXXXXX (carregado no layout, sem gate)
@@ -69,17 +70,21 @@ export function loadTrackingScripts(): void {
 
   const { ga4Id, googleAdsId, metaPixelId } = TRACKING;
 
-  if (ga4Id || googleAdsId) {
-    const firstId = ga4Id || googleAdsId;
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${firstId}`;
-    document.head.appendChild(script);
-
+  /*
+   * Com o Google Ads preenchido, o layout ja carregou o gtag.js e
+   * configurou a conta para todos os visitantes; aqui so falta o GA4,
+   * que continua esperando o aceite.
+   */
+  if (ga4Id) {
     const enviar = gtagShim();
-    enviar("js", new Date());
-    if (ga4Id) enviar("config", ga4Id);
-    if (googleAdsId) enviar("config", googleAdsId);
+    if (!googleAdsId) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+      document.head.appendChild(script);
+      enviar("js", new Date());
+    }
+    enviar("config", ga4Id);
   }
 
   if (metaPixelId) {
